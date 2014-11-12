@@ -1,0 +1,27 @@
+<h2>Sign up</h2>
+
+<%= bootstrap_form_for( @user, url: user_registration_path) do |f| %>
+  
+
+  <%=f.fields_for :autor , @user.autor do |autor| %>
+     <%= autor.text_field :name %>
+     <%= autor.text_field :surename %>
+  <% end %>
+  
+  <%= f.email_field :email, autofocus: true %>
+
+  <div class="field">
+    <% if @validatable %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

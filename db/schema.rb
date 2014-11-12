@@ -11,22 +11,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20141112155919) do
-=======
-ActiveRecord::Schema.define(version: 20141112160003) do
->>>>>>> Login
+ActiveRecord::Schema.define(version: 20141112180050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-<<<<<<< HEAD
+  create_table "atributelists", force: true do |t|
+    t.integer  "publicationtype_id"
+    t.integer  "atribute_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "autors", force: true do |t|
     t.string   "name"
     t.string   "surename"
     t.string   "email"
     t.string   "academic_degree"
-=======
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publications", force: true do |t|
+    t.datetime "add_date"
+    t.text     "attention"
+    t.string   "title"
+    t.datetime "create_date"
+    t.integer  "publicationsubtype_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publicationsubtypes", force: true do |t|
+    t.string   "name"
+    t.integer  "publicationtype_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "publicationtypes", force: true do |t|
+    t.string   "name"
+    t.integer  "atributelist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -38,15 +67,13 @@ ActiveRecord::Schema.define(version: 20141112160003) do
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
->>>>>>> Login
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "autor_id"
   end
 
-<<<<<<< HEAD
-=======
+  add_index "users", ["autor_id"], name: "index_users_on_autor_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
->>>>>>> Login
 end

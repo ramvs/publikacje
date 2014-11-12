@@ -3,4 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  belongs_to :autor, :autosave => true , :inverse_of => :user , :dependent => :destroy
+  accepts_nested_attributes_for :autor
+
+  validates :autor , presence: true
 end
