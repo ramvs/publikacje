@@ -1,4 +1,4 @@
 class Autorlist < ActiveRecord::Base
-	has_many :autors
-	has_many :publications
+	belongs_to :autor
+	belongs_to :publication
 end

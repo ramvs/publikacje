@@ -53,7 +53,10 @@ ActiveRecord::Schema.define(version: 20141112185813) do
     t.string   "academic_degree"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "autors", ["user_id"], name: "index_autors_on_user_id", using: :btree
 
   create_table "publications", force: true do |t|
     t.datetime "add_date"

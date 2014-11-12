@@ -1,4 +1,4 @@
 class Atributelist < ActiveRecord::Base
-	has_many :atributs
-	has_many :publicationtype
+	belongs_to :atribut
+	belongs_to :publicationtype
 end

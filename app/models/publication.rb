@@ -1,5 +1,5 @@
 class Publication < ActiveRecord::Base
-	belongs_to :autorlist
+	has_many :autorlists
 	belongs_to :user
 	has_many :atributevalues
 end

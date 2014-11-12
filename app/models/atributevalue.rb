@@ -1,4 +1,4 @@
 class Atributevalue < ActiveRecord::Base
-	has_many :atributs
+	belongs_to :atribut
 	belongs_to :publication
 end
