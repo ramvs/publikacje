@@ -11,73 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112185813) do
+ActiveRecord::Schema.define(version: 20141112204901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "atributelists", force: true do |t|
-    t.integer  "publicationtype_id"
-    t.integer  "atribut_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "atributevalues", force: true do |t|
-    t.string   "wartosc"
-    t.integer  "atribute_id"
-    t.integer  "publication_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "atributs", force: true do |t|
+  create_table "authors", force: true do |t|
     t.string   "name"
-    t.string   "typ"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "autorlists", force: true do |t|
-    t.boolean  "main_autor"
-    t.integer  "autor_id"
-    t.integer  "publication_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "autors", force: true do |t|
-    t.string   "name"
-    t.string   "surename"
+    t.string   "surname"
     t.string   "email"
     t.string   "academic_degree"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
   end
-
-  add_index "autors", ["user_id"], name: "index_autors_on_user_id", using: :btree
 
   create_table "publications", force: true do |t|
-    t.datetime "add_date"
-    t.text     "attention"
     t.string   "title"
-    t.datetime "create_date"
-    t.integer  "publicationsubtype_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "publicationsubtypes", force: true do |t|
-    t.string   "name"
-    t.integer  "publicationtype_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "publicationtypes", force: true do |t|
-    t.string   "name"
-    t.integer  "atributelist_id"
+    t.string   "description"
+    t.datetime "creation_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

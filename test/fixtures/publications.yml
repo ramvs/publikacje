@@ -1,15 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  add_date: 2014-11-12 17:12:41
-  attention: MyText
   title: MyString
-  create_date: 2014-11-12 17:12:41
-  publicationsubtype_id: 1
+  description: MyString
+  creation_date: 2014-11-12 21:49:01
 
 two:
-  add_date: 2014-11-12 17:12:41
-  attention: MyText
   title: MyString
-  create_date: 2014-11-12 17:12:41
-  publicationsubtype_id: 1
+  description: MyString
+  creation_date: 2014-11-12 21:49:01

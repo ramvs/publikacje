@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
 
-  root 'autor#index'
+  root 'authors#index'
   get 'publications/index'
 
-  get 'autor/index'
+  get 'authors/index'
 
 
   devise_for :users
