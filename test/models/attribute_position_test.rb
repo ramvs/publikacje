@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PublicationtypeTest < ActiveSupport::TestCase
+class AttributePositionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

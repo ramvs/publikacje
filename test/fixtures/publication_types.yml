@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  publicationtype_id: 1
-  atribute_id: 1
+  name: MyString
 
 two:
-  publicationtype_id: 1
-  atribute_id: 1
+  name: MyString

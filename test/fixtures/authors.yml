@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  surename: MyString
+  surname: MyString
   email: MyString
   academic_degree: MyString
 
 two:
   name: MyString
-  surename: MyString
+  surname: MyString
   email: MyString
   academic_degree: MyString

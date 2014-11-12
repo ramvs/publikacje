@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AutorTest < ActiveSupport::TestCase
+class AuthorPositionTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
