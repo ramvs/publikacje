@@ -1,0 +1,52 @@
+<%= form_for @autor, :html => { :class => "form-horizontal autor" } do |f| %>
+
+    <% if @autor.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@autor.errors.count, "error") %> prohibited this autor from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @autor.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@autor[:name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :surename, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :surename, :class => 'form-control' %>
+    </div>
+    <%= error_span(@autor[:surename]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :email, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :email, :class => 'form-control' %>
+    </div>
+    <%= error_span(@autor[:email]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :academic_degree, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :academic_degree, :class => 'form-control' %>
+    </div>
+    <%= error_span(@autor[:academic_degree]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            autors_path, :class => 'btn btn-default' %>
+
+<% end %>
