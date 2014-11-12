@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :author, :autosave => true , :inverse_of => :user , :dependent => :destroy
-  accepts_nested_attributes_for :autor
+  accepts_nested_attributes_for :author
 
   validates :author , presence: true
 

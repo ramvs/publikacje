@@ -5,7 +5,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def new
     @user = User.new
-    @user.build_autor
+    @user.build_author
   end
 
   private
@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :email,
           :password,
           :password_confirmation,
-          :autor_attributes => [:id,:name,:surename , :user_id]
+          :author_attributes => [:id,:name,:surename , :user_id]
         )
     end
   # GET /resource/sign_up

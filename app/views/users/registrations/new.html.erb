@@ -3,9 +3,9 @@
 <%= bootstrap_form_for( @user, url: user_registration_path) do |f| %>
   
 
-  <%=f.fields_for :autor , @user.autor do |autor| %>
-     <%= autor.text_field :name %>
-     <%= autor.text_field :surename %>
+  <%=f.fields_for :author , @user.author do |author| %>
+     <%= author.text_field :name %>
+     <%= author.text_field :surname %>
   <% end %>
   
   <%= f.email_field :email, autofocus: true %>
