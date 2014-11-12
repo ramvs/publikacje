@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  belongs_to :autor, :autosave => true , :inverse_of => :user , :dependent => :destroy
+  has_one :autor, :autosave => true , :inverse_of => :user , :dependent => :destroy
   accepts_nested_attributes_for :autor
 
   validates :autor , presence: true
