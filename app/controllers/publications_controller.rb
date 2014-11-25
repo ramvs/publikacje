@@ -72,3 +72,4 @@ class PublicationsController < ApplicationController
         params.require(:publication).permit(:title, :description, :user_id, :publication_subtype_id)
     end
 end
+#
