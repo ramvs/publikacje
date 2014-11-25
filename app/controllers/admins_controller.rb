@@ -5,7 +5,7 @@ class AdminsController < ApplicationController
 
 	def destroy_user
 		User.destroy(params[:id])
-		render 'users'
+		redirect_to users_administrator_path
 	end
 
 	def edit_user
@@ -29,6 +29,6 @@ class AdminsController < ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:admin,:active)
+			params.require(:user).permit(:admin,:approved)
 		end
 end

@@ -10,7 +10,7 @@
 <%= bootstrap_form_for @user , url: {action: "update_user" , controller: "admins"} do |u| %>
 	<strong>Parametry konta: </strong>
 	<%= u.check_box  :admin , label: "Administrator" %>
-	<%= u.check_box  :active , label: "Konto aktywne" %>
+	<%= u.check_box  :approved , label: "Konto aktywne" %>
 	<%= u.submit "Zapisz zmiany" , class: "btn btn-primary" %>
 <% end %>
 </div>
