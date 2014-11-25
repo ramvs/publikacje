@@ -21,6 +21,9 @@ class PublicationSubtypesController < ApplicationController
 
   # GET /publication_subtypes/1/edit
   def edit
+    @publication_subtype = PublicationSubtype.find(params[:id])
+    @subtype_list = PublicationSubtype.pluck(:name)
+    @type_list = PublicationType.pluck(:name)
   end
 
   # POST /publication_subtypes
