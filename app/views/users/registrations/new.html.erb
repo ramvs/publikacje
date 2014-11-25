@@ -1,27 +1,39 @@
 <h2>Sign up</h2>
 
+<div class="row">
+<div class="col-lg-7">
+
+<div class="panel panel-default">
+<div class="panel-body">
 <%= bootstrap_form_for( @user, url: user_registration_path) do |f| %>
-  
-
   <%=f.fields_for :author , @user.author do |author| %>
-     <%= author.text_field :name %>
-     <%= author.text_field :surname %>
+     <%= author.text_field :name , label: "Imie", autofocus: true %>
+     <%= author.text_field :surname, label: "Nazwisko" %>
+     <%= author.form_group :academic_degree , label: { text: "Stopień naukowy" }  do %>
+        <%= author.radio_button :academic_degree , "" , label: "brak" , chacked: true %>
+        <%= author.radio_button :academic_degree , "inż. " , label: "inżynier" %>
+        <%= author.radio_button :academic_degree , "mgr " , label: "magister" %>
+        <%= author.radio_button :academic_degree , "dr " , label: "doktor" %>
+        <%= author.radio_button :academic_degree , "prof. " , label: "profesor" %>
+     <% end %>
   <% end %>
-  
-  <%= f.email_field :email, autofocus: true %>
-
+  <%= f.email_field :email %>
   <div class="field">
     <% if @validatable %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off",label: "Hasło" %>
   </div>
-
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-
+  <%= f.password_field :password_confirmation, autocomplete: "off",label: "Powtórz hasło" %>
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Zarejestruj się" , class: "btn btn-primary" %>
   </div>
+  <%= render "devise/shared/links" %>
 <% end %>
+</div>
+</div>
 
-<%= render "devise/shared/links" %>
+</div>
+</div>
+
+
