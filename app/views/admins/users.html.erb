@@ -15,18 +15,22 @@
 </thead>
 
 <tbody>
+<% if @users.size > 0%>
 	<% @users.each do |u| %>
 		<tr>
 			<td><%= "#{u.author.academic_degree} #{u.author.surname} #{u.author.name}" %></td>
 			<td><%= u.email %></td>
-			<td><%= u.admin %></td>
-			<td> Tak </td>
+			<td><%= yes_or_no u.admin %></td>
+			<td><%= yes_or_no u.approved %></td>
 			<td>
-		<%= link_to "Usuń",admin_destroy_user_path(u),method: :delete, data: { confirm: 'Are you sure?' } %>| 
-		<%= link_to "Edytuj" , '#' %>
+				<%= link_to "Usuń",admin_destroy_user_path(u),method: :delete, data: { confirm: 'Are you sure?' } %>| 
+				<%= link_to "Edytuj" ,admin_edit_user_path(u)  %>
 			</td>
 		</tr>	
 	<% end %>
+<% else %>
+	<tr><td>No other users found. </td></tr>
+<% end %>
 </tbody>
 
 

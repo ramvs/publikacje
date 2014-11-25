@@ -5,6 +5,30 @@ class AdminsController < ApplicationController
 
 	def destroy_user
 		User.destroy(params[:id])
-		render 'users'
+		redirect_to users_administrator_path
 	end
+
+	def edit_user
+		@user = User.find(params[:id])
+		if @user == nil
+			flash[:danger] = "User not found!"
+			redirect_to users_administrator_path
+		end
+	end
+
+	def update_user
+		@user = User.find(params[:id])
+		if @user.update_attributes(user_params)
+			flash[:notice] = "Zapisano zmiany"
+			redirect_to users_administrator_path
+		else
+			flash[:danger] = "Cannot update"
+			render 'edit_user'
+		end
+	end
+
+	private
+		def user_params
+			params.require(:user).permit(:admin,:approved)
+		end
 end

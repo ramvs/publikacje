@@ -12,4 +12,20 @@ class User < ActiveRecord::Base
 
   validates :author , presence: true
 
+  def full_name
+  	author.full_name
+  end
+
+  def active_for_authentication? 
+    super && approved? 
+  end 
+
+  def inactive_message 
+    if !approved? 
+      :not_approved 
+    else 
+      super # Use whatever other message 
+    end 
+  end
+
 end
