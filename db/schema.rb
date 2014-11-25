@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20141112212807) do
   end
 
   create_table "attribute_values", force: true do |t|
-    t.string   "value"
+    t.string   "attribute_value"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "publication_id"
