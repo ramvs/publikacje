@@ -1,9 +1,9 @@
-<%= bootstrap_form_for(@publication_subtype) do |f| %>
+<%= bootstrap_form_for(@subtype) do |f| %>
   
   <div class="form-group">
   	<label>Typ publikacji</label>
   	<input list="types" class="form-control" name="kind" autocomplete="off"
-  		value="<%= @publication_subtype.publication_type_name %>">
+  		value="<%= @subtype.publication_type_name %>">
   	<datalist id="types">
   		<% @type_list.each do |n|%>
   			<option value="<%= n %>"></option>
@@ -14,7 +14,7 @@
   <div class="form-group">
   	<label>Podtyp publikacji</label>
   	<input list="name" class="form-control" name="name" autocomplete="off"
-  		value="<%= @publication_subtype.name %>">
+  		value="<%= @subtype.name %>">
   	<datalist id="name">
   		<% @subtype_list.each do |n|%>
   			<option value="<%= n %>"></option>

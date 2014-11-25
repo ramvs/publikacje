@@ -14,7 +14,7 @@
     <% @publication_subtypes.each do |publication_subtype| %>
       <tr>
         <td> <%=publication_subtype.id%></td>
-        <td> <%=publication_subtype.publication_type.name%></td>
+        <td> <%=publication_subtype.publication_type_name%></td>
         <td> <%=publication_subtype.name%></td>
         <td><%= link_to 'Show', publication_subtype %>
         <%= link_to 'Edit', edit_publication_subtype_path(publication_subtype) %>
