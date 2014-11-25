@@ -1,0 +1,30 @@
+<h1>Listing attributes</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Atrybut numer</th>
+      <th>Nazwa</th>
+      <th>Typ</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @attributes.each do |attribute| %>
+      <tr>
+        <td> <%=attribute.id%></td>
+        <td> <%=attribute.name%></td>
+        <td> <%=attribute.type%></td>
+        <td><%= link_to 'Show', attribute %>
+        <%= link_to 'Edit', edit_attribute_path(attribute) %>
+        <%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+     <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Attribute', new_attribute_path %>
+<!--  -->
