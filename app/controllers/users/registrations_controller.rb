@@ -14,7 +14,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :email,
           :password,
           :password_confirmation,
-          :author_attributes => [:id,:name,:surename , :user_id]
+          :author_attributes => [:id,:name,:surname , :user_id]
         )
     end
   # GET /resource/sign_up
