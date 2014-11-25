@@ -10,12 +10,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
     def sign_up_params
-      params.require(:user).permit(
+      parameters = params.require(:user).permit(
           :email,
           :password,
           :password_confirmation,
-          :author_attributes => [:id,:name,:surename , :user_id]
+          :author_attributes => [:id,:name,:surname,:academic_degree, :user_id]
         )
+      parameters[:author_attributes][:email] = parameters[:email]
+      return parameters
     end
   # GET /resource/sign_up
   # def new
