@@ -1,6 +1,6 @@
 class PublicationSubtypesController < ApplicationController
   before_action :set_publication_subtype, only: [:show, :edit, :update, :destroy]
-
+  before_action :setup_subtype , only: [:create , :update]
   # GET /publication_subtypes
   # GET /publication_subtypes.json
   def index
@@ -29,17 +29,7 @@ class PublicationSubtypesController < ApplicationController
   # POST /publication_subtypes
   # POST /publication_subtypes.json
   def create
-    @subtype = PublicationSubtype.new
-    @subtype.name = params[:name]
-    type = PublicationType.where(name: params[:kind]).limit(1)
-    if type == nil
-      type = PublicationType.new(name: params[:kind])
-    else
-      type = type.first
-    end
-    @subtype.publication_type = type
-
-    respond_to do |format|
+   respond_to do |format|
       if @subtype.save
         format.html { redirect_to publication_subtypes_path, notice: 'Publication subtype was successfully created.' }
         format.json { render :show, status: :created, location: @subtype }
@@ -54,12 +44,12 @@ class PublicationSubtypesController < ApplicationController
   # PATCH/PUT /publication_subtypes/1.json
   def update
     respond_to do |format|
-      if @publication_subtype.update(publication_subtype_params)
-        format.html { redirect_to @publication_subtype, notice: 'Publication subtype was successfully updated.' }
-        format.json { render :show, status: :ok, location: @publication_subtype }
+      if @subtype.save
+        format.html { redirect_to @subtype, notice: 'Publication subtype was successfully updated.' }
+        format.json { render :show, status: :ok, location: @subtype }
       else
         format.html { render :edit }
-        format.json { render json: @publication_subtype.errors, status: :unprocessable_entity }
+        format.json { render json: @subtype.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -83,5 +73,17 @@ class PublicationSubtypesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_subtype_params
       params.require(:publication_subtype).permit(:name,:publication_type_id)
+    end
+
+    def setup_subtype
+      @subtype = PublicationSubtype.new
+      @subtype.name = params[:name]
+      type = PublicationType.where(name: params[:kind]).limit(1)
+      if type == nil
+        type = PublicationType.new(name: params[:kind])
+      else
+        type = type.first
+      end
+      @subtype.publication_type = type
     end
 end
