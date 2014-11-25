@@ -5,6 +5,10 @@ html {
 
 body {
   padding-top: 60px;
+  min-height: 90%;
+  #container {
+   min-height: 100%;
+  }
 }
 
 section {
