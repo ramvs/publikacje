@@ -1,0 +1,36 @@
+<h1> Lista użytkowników </h1>
+
+<div class="panel panel-default" >
+
+<table class="table">
+
+<thead>
+	<tr>
+		<th>Nazwisko i imię </th>
+		<th>Adres email</th>
+		<th>Administrator</th>
+		<th>Konto aktywne</th>
+		<th></th>
+	</tr>
+</thead>
+
+<tbody>
+	<% @users.each do |u| %>
+		<tr>
+			<td><%= "#{u.author.academic_degree} #{u.author.surname} #{u.author.name}" %></td>
+			<td><%= u.email %></td>
+			<td><%= u.admin %></td>
+			<td> Tak </td>
+			<td>
+		<%= link_to "Usuń",admin_destroy_user_path(u),method: :delete, data: { confirm: 'Are you sure?' } %>| 
+		<%= link_to "Edytuj" , '#' %>
+			</td>
+		</tr>	
+	<% end %>
+</tbody>
+
+
+</table>
+
+
+</div>

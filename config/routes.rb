@@ -5,6 +5,9 @@ Rails.application.routes.draw do
 
   get 'authors/index'
 
+  get 'admin/users/index' , to: 'admins#users' , as: :users_administrator
+  delete 'admin/users/:id/destroy' , to: 'admins#destroy_user' , as: :admin_destroy_user 
+
 
   devise_for :users , controllers: {registrations: "users/registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
