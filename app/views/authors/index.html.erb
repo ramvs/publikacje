@@ -1,1 +1,22 @@
-Authors list
+<h1> Lista autorów </h1>
+<div class="row">	
+<div class="col-md-8">
+<table class ="table">
+	<thead>
+		<tr>
+			<th> Imię i nazwisko </th>
+			<th> Email </th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @authors.each do |a| %>
+			<tr>
+				<td><%= a.surname + " " + a.name %></td>
+				<td><%= a.email + " " %></td>
+			</tr>
+		<% end %>
+
+	</tbody>
+</table>
+</div>
+</div>
