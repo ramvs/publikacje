@@ -2,7 +2,9 @@ Rails.application.routes.draw do
 
   
   root 'authors#index'
+  resources :publication_types
   resources :publications
+  resources :publication_subtypes
   resources :attributes
   get 'publications/index'
   get 'authors/index'
