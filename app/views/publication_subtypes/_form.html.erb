@@ -1,6 +1,24 @@
 <%= bootstrap_form_for(@publication_subtype) do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_field :publication_type_id %>
+  
+  <div class="form-group">
+  	<label>Rodzaj publikacji</label>
+  	<input list="types" class="form-control" name="kind">
+  	<datalist id="types">
+  		<% @type_list.each do |n|%>
+  			<option value="<%= n %>"></option>
+  		<% end %>
+  	</datalist>
+  </div>
+
+  <div class="form-group">
+  	<label>Podtyp publikacji</label>
+  	<input list="name" class="form-control" name="name">
+  	<datalist id="name">
+  		<% @subtype_list.each do |n|%>
+  			<option value="<%= n %>"></option>
+  		<% end %>
+  	</datalist>
+  </div>
+ 
   <%= f.submit "Create Publication Subtype" %>
 <% end %>
-<!--  -->

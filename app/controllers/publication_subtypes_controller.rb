@@ -15,6 +15,8 @@ class PublicationSubtypesController < ApplicationController
   # GET /publication_subtypes/new
   def new
     @publication_subtype = PublicationSubtype.new
+    @subtype_list = PublicationSubtype.pluck(:name)
+    @type_list = PublicationType.pluck(:name)
   end
 
   # GET /publication_subtypes/1/edit
@@ -24,15 +26,23 @@ class PublicationSubtypesController < ApplicationController
   # POST /publication_subtypes
   # POST /publication_subtypes.json
   def create
-    @publication_subtype = PublicationSubtype.new(publication_subtype_params)
+    @subtype = PublicationSubtype.new
+    @subtype.name = params[:name]
+    type = PublicationType.where(name: params[:kind]).limit(1)
+    if type == nil
+      type = PublicationType.new(name: params[:kind])
+    else
+      type = type.first
+    end
+    @subtype.publication_type = type
 
     respond_to do |format|
-      if @publication_subtype.save
+      if @subtype.save
         format.html { redirect_to publication_subtypes_path, notice: 'Publication subtype was successfully created.' }
-        format.json { render :show, status: :created, location: @publication_subtype }
+        format.json { render :show, status: :created, location: @subtype }
       else
         format.html { render :new }
-        format.json { render json: @publication_subtype.errors, status: :unprocessable_entity }
+        format.json { render json: @subtype.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -14,8 +14,8 @@
     <% @publication_subtypes.each do |publication_subtype| %>
       <tr>
         <td> <%=publication_subtype.id%></td>
+        <td> <%=publication_subtype.publication_type.name%></td>
         <td> <%=publication_subtype.name%></td>
-        <td> <%=publication_subtype.publication_type_id%></td>
         <td><%= link_to 'Show', publication_subtype %>
         <%= link_to 'Edit', edit_publication_subtype_path(publication_subtype) %>
         <%= link_to 'Destroy', publication_subtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
