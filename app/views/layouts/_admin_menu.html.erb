@@ -1,0 +1,7 @@
+<% if admin_signed_in? %>
+ <%= navbar_dropdown "Panel administratora" do%>
+ 	<%= navbar_item "Użytkownicy" ,"#" %>
+ 	<%= navbar_item "Rodzaje publikacji","#" %>
+ 	<%= navbar_item "Atrybuty publikacji","#" %>
+ <% end %>
+<% end %>
