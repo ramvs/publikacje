@@ -19,11 +19,11 @@
 		<tr>
 			<td><%= "#{u.author.academic_degree} #{u.author.surname} #{u.author.name}" %></td>
 			<td><%= u.email %></td>
-			<td><%= u.admin %></td>
-			<td> Tak </td>
+			<td><%= yes_or_no u.admin %></td>
+			<td><%= yes_or_no u.active %></td>
 			<td>
 		<%= link_to "Usuń",admin_destroy_user_path(u),method: :delete, data: { confirm: 'Are you sure?' } %>| 
-		<%= link_to "Edytuj" , '#' %>
+		<%= link_to "Edytuj" ,admin_edit_user_path(u)  %>
 			</td>
 		</tr>	
 	<% end %>

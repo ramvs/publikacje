@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
 
   get 'admin/users/index' , to: 'admins#users' , as: :users_administrator
-  delete 'admin/users/:id/destroy' , to: 'admins#destroy_user' , as: :admin_destroy_user 
+  delete 'admin/users/:id/destroy' , to: 'admins#destroy_user' , as: :admin_destroy_user
+  get 'admin/users/:id/edit', to: 'admins#edit_user' , as: :admin_edit_user
+  patch 'admin/users/:id' , to: 'admins#update_user' , as: :admin_user
 
 
 

@@ -1,0 +1,19 @@
+<h1> Edycja użytkownika </h1>
+
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-default">
+<div class="panel-heading">
+ <%= @user.full_name %>
+</div>
+<div class="panel-body">
+<%= bootstrap_form_for @user , url: {action: "update_user" , controller: "admins"} do |u| %>
+	<strong>Parametry konta: </strong>
+	<%= u.check_box  :admin , label: "Administrator" %>
+	<%= u.check_box  :active , label: "Konto aktywne" %>
+	<%= u.submit "Zapisz zmiany" , class: "btn btn-primary" %>
+<% end %>
+</div>
+</div>
+</div>
+</div>

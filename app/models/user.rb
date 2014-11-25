@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
 
   validates :author , presence: true
 
+  def full_name
+  	author.full_name
+  end
+
 end
