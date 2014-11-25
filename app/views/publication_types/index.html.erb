@@ -1,0 +1,28 @@
+<h1>Listing Publications Types</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Typ publikacji numer</th>
+      <th>Nazwa</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publication_types.each do |publication_types| %>
+      <tr>
+        <td> <%=publication_types.id%></td>
+        <td> <%=publication_types.name%></td>
+        <td><%= link_to 'Show', publication_type_path %>
+        <%= link_to 'Edit', edit_publication_type_path(publication_subtype) %>
+        <%= link_to 'Destroy', publication_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+     <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Publication Type', new_publication_type_path %>
+<!--  -->

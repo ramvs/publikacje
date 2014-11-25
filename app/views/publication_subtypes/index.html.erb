@@ -1,0 +1,30 @@
+<h1>Listing Publications Subtypes</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Podtyp publikacji numer</th>
+      <th>Nazwa</th>
+      <th>Typ publikacji</th>
+      <th>Akcje</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @publication_subtypes.each do |publication_subtype| %>
+      <tr>
+        <td> <%=publication_subtype.id%></td>
+        <td> <%=publication_subtype.name%></td>
+        <td> <%=publication_subtype.publication_type_id%></td>
+        <td><%= link_to 'Show', publication_subtype %>
+        <%= link_to 'Edit', edit_publication_subtype_path(publication_subtype) %>
+        <%= link_to 'Destroy', publication_subtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+     <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Publication Subtype', new_publication_subtype_path %>
+<!--  -->
