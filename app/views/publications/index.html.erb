@@ -6,6 +6,8 @@
       <th>Publikacja numer</th>
       <th>Tytuł</th>
       <th>Opis</th>
+      <th>Dodane przez</th>
+      <th>Akcje</th>
     </tr>
   </thead>
 
@@ -15,6 +17,7 @@
         <td> <%=publication.id%></td>
         <td> <%=publication.title%></td>
         <td> <%=publication.description%></td>
+        <td> <%=User.find(publication.user_id).email %></td>
         <td><%= link_to 'Show', publication %>
         <%= link_to 'Edit', edit_publication_path(publication) %>
         <%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
