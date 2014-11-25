@@ -10,13 +10,13 @@
   </thead>
 
   <tbody>
-    <% @publication_types.each do |publication_types| %>
+    <% @publication_types.each do |p| %>
       <tr>
-        <td> <%=publication_types.id%></td>
-        <td> <%=publication_types.name%></td>
-        <td><%= link_to 'Show', publication_type_path %>
-        <%= link_to 'Edit', edit_publication_type_path(publication_subtype) %>
-        <%= link_to 'Destroy', publication_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td> <%=p.id%></td>
+        <td> <%=p.name%></td>
+        <td><%= link_to 'Show', publication_type_path(p) %>
+        <%= link_to 'Edit', edit_publication_type_path(p) %>
+        <%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
      <% end %>
   </tbody>
