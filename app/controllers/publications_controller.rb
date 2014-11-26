@@ -18,10 +18,16 @@ class PublicationsController < ApplicationController
     @authors = Author.prepare_seletc_array
     @types = PublicationType.prepare_type_list
     @selected = []
+    @type = []
   end
 
   # GET /publications/1/edit
   def edit
+    @publication = Publication.find(params[:id])
+    @authors = Author.prepare_seletc_array
+    @types = PublicationType.prepare_type_list
+    @type = @publication.publication_subtype.id
+    @selected = @publication.authors.pluck(:id)
   end
 
   # POST /publications
@@ -37,6 +43,7 @@ class PublicationsController < ApplicationController
       else
         @authors = Author.prepare_seletc_array
         @types = PublicationType.prepare_type_list
+        @type = params[:publication][:publication_subtype_id]
         @selected = params[:publication][:authors][:id]
         format.html { render :new }
         format.json { render json: @publication.errors, status: :unprocessable_entity }
@@ -47,6 +54,8 @@ class PublicationsController < ApplicationController
   # PATCH/PUT /publications/1
   # PATCH/PUT /publications/1.json
   def update
+    @publication.attributes = publication_params
+    @publication.authors = Author.where(id: params[:publication][:authors][:id])
     respond_to do |format|
       if @publication.update(publication_params)
         format.html { redirect_to @publication, notice: 'Publication was successfully updated.' }
