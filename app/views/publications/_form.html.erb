@@ -3,5 +3,9 @@
   <%= f.text_field :description %>
   <%= f.text_field :publication_subtype_id %>
   <%= f.submit "Create Publication" %>
+  <%= select_tag(:author_id,options_for_select(@authors),multiple: true) %>
 <% end %>
 <!--  -->
+<script>
+$("#author_id").chosen();
+</script>

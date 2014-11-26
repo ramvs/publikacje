@@ -15,6 +15,8 @@ class PublicationsController < ApplicationController
   # GET /publications/new
   def new
     @publication = Publication.new
+    @authors = Author.prepare_seletc_array
+    @selected = []
   end
 
   # GET /publications/1/edit
