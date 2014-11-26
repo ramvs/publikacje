@@ -1,6 +1,7 @@
 class Author < ActiveRecord::Base
 	belongs_to :user
-	has_many :author_positions
+	has_many :author_positions, inverse_of: :author
+	has_many :publications, through: :author_positions
  	validates :name, :surname, :email, :academic_degree , presence: true
 
 

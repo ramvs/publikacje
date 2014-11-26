@@ -1,25 +1,21 @@
 <%= bootstrap_form_for(@publication) do |f| %>
-  <%= f.text_field :title %>
-  <%= f.text_field :description %>
- 
- <div class="form-group">
- 	<%= select_tag(:subtype_id,options_for_select(@types)) %>
- </div>
+  <%= f.text_field :title , required: true %>
+  <%= f.text_field :description , required: true %>
+  <%= f.select(:publication_subtype_id,options_for_select(@types), required: true ) %>
 
-  <div class="form-group">
-  	<%= select_tag(:author_id,options_for_select(@authors),multiple: true) %>
-  </div>
+  <%= f.fields_for :authors do |a| %>
+  	<%= a.select(:id,options_for_select(@authors,@selected),{},{multiple: true}) %>
+  <% end %>
 
   <%= f.submit "Create Publication" %>
 <% end %>
 <!--  -->
 <script>
-$("#author_id").chosen({
+$("#publication_authors_id").chosen({
 	width:"100%",
 	placeholder_text_multiple: "Wybierz autorów"
 });
-$("#subtype_id").chosen({
+$("#publication_publication_subtype_id").chosen({
 	width:"100%"
 })
-
 </script>

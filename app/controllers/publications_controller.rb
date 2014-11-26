@@ -29,11 +29,15 @@ class PublicationsController < ApplicationController
   def create
     @publication = Publication.new(publication_params)
     @publication.user_id = current_user.id
+    @publication.authors = Author.where(id: params[:publication][:authors][:id])
     respond_to do |format|
       if @publication.save
         format.html { redirect_to publications_path, notice: 'Publication was successfully created.' }
         format.json { render :show, status: :created, location: @publication }
       else
+        @authors = Author.prepare_seletc_array
+        @types = PublicationType.prepare_type_list
+        @selected = params[:publication][:authors][:id]
         format.html { render :new }
         format.json { render json: @publication.errors, status: :unprocessable_entity }
       end
@@ -72,7 +76,7 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-        params.require(:publication).permit(:title, :description, :user_id, :publication_subtype_id)
+        params.require(:publication).permit(:title, :description, :publication_subtype_id)
     end
 end
 #
