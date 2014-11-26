@@ -15,8 +15,8 @@
     <% @publications.each do |publication| %>
       <tr>
         <td> <%=publication.id%></td>
-        <td> <%=publication.title%></td>
-        <td> <%=publication.publication_subtype.publication_type.name%></td>
+        <td> <%= link_to publication.title , publication %></td>
+        <td> <%=publication.publication_subtype.full_name%></td>
         <td> <%=User.find(publication.user_id).email %></td>
         <td><%= link_to 'Show', publication %>
         <%= link_to 'Edit', edit_publication_path(publication) %>

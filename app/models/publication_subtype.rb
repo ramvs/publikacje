@@ -6,11 +6,11 @@ class PublicationSubtype < ActiveRecord::Base
 	validates_uniqueness_of :name , scope: :publication_type_id 
 
 	def publication_type_name
-		if publication_type==nil
-			""
-		else
-			publication_type.name
-		end
+		publication_type.name
+	end
+
+	def full_name
+		"#{publication_type_name} - #{name}"
 	end
 
 end
