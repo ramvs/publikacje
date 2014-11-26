@@ -5,7 +5,7 @@
   <nav>
     <ul>
       <% if user_signed_in? %>
-      <li><%= current_user.email %>|</li>
+      <li>Zalogowany jako <%= current_user.email %>|</li>
       <%end %>
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "About", '#' %></li>
