@@ -14,4 +14,16 @@ class PublicationType < ActiveRecord::Base
 			return p.id
 		end
 	end
+
+
+	def self.prepare_type_list
+		types = PublicationType.all.order("name ASC")
+		ary = Array.new
+		types.each do |t|
+			t.publication_subtypes.each do |s|
+				ary<<["#{t.name} - #{s.name}",s.id]
+			end
+		end
+		return ary
+	end
 end

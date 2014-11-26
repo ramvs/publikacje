@@ -5,7 +5,7 @@
     <tr>
       <th>Publikacja numer</th>
       <th>Tytuł</th>
-      <th>Opis</th>
+      <th>Typ</th>
       <th>Dodane przez</th>
       <th>Akcje</th>
     </tr>
@@ -16,7 +16,7 @@
       <tr>
         <td> <%=publication.id%></td>
         <td> <%=publication.title%></td>
-        <td> <%=publication.description%></td>
+        <td> <%=publication.publication_subtype.publication_type.name%></td>
         <td> <%=User.find(publication.user_id).email %></td>
         <td><%= link_to 'Show', publication %>
         <%= link_to 'Edit', edit_publication_path(publication) %>
