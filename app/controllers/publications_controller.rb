@@ -16,6 +16,7 @@ class PublicationsController < ApplicationController
   def new
     @publication = Publication.new
     @authors = Author.prepare_seletc_array
+    @types = PublicationType.prepare_type_list
     @selected = []
   end
 

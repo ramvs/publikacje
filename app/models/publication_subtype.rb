@@ -12,4 +12,5 @@ class PublicationSubtype < ActiveRecord::Base
 			publication_type.name
 		end
 	end
+
 end

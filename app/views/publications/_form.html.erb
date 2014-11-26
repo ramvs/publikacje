@@ -1,7 +1,10 @@
 <%= bootstrap_form_for(@publication) do |f| %>
   <%= f.text_field :title %>
   <%= f.text_field :description %>
-  <%= f.text_field :publication_subtype_id %>
+ 
+ <div class="form-group">
+ 	<%= select_tag(:subtype_id,options_for_select(@types)) %>
+ </div>
 
   <div class="form-group">
   	<%= select_tag(:author_id,options_for_select(@authors),multiple: true) %>
@@ -15,5 +18,8 @@ $("#author_id").chosen({
 	width:"100%",
 	placeholder_text_multiple: "Wybierz autorów"
 });
-$('#autoship_option').val('').trigger('chosen:updated');
+$("#subtype_id").chosen({
+	width:"100%"
+})
+
 </script>
