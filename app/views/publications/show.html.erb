@@ -1,4 +1,34 @@
-<p id="notice"><%= notice %></p>
+
+
+<div class ="row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<%= @publication.title %>
+			</div>
+			<div class="panel-body">
+				<ul>
+				<li><strong>Typ: </strong><%= @publication.publication_subtype.full_name %></li>
+				<li><strong>Opis: </strong><%= @publication.description %></li>
+				<li><strong>Dodane przez: </strong><%= "#{@publication.user.full_name} , #{@publication.user.email}" %></li>
+				<li><strong>Data dodania: </strong><%= @publication.created_at %></li>
+				<li><strong>Data aktualizacji: </strong><%= @publication.updated_at %></li>
+				<li>
+					<strong> Lista autorów: </strong>
+					<ul>
+						<% @publication.authors.each do |a| %>
+							<li>
+								<strong><%= "#{a.full_name}, " %></strong>
+								<%= a.email %>
+							</li>
+						<% end %>
+					</ul>
+				</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
 
 <%= link_to 'Edit', edit_publication_path(@publication) %> |
 <%= link_to 'Back', publications_path %>

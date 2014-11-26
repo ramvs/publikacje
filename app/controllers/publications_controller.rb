@@ -10,6 +10,7 @@ class PublicationsController < ApplicationController
   # GET /publications/1
   # GET /publications/1.json
   def show
+    @publication = Publication.find(params[:id])
   end
 
   # GET /publications/new
