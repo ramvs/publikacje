@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		Dane podstawowe
+	</div>
+	<div class="panel-body">
+		<%= f.text_field :title , required: true %>
+		<%= f.text_field :description , required: true %>
+		<%= f.select(:publication_subtype_id,options_for_select(@types,@type), required: true ) %>
+
+		<%= f.fields_for :authors do |a| %>
+			<%= a.select(:id,options_for_select(@authors,@selected),{label: "Autorzy"},{multiple: true}) %>
+		<% end %>
+	</div>
+</div>

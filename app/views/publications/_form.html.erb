@@ -1,12 +1,13 @@
+
 <%= bootstrap_form_for(@publication) do |f| %>
-  <%= f.text_field :title , required: true %>
-  <%= f.text_field :description , required: true %>
-  <%= f.select(:publication_subtype_id,options_for_select(@types,@type), required: true ) %>
-
-  <%= f.fields_for :authors do |a| %>
-  	<%= a.select(:id,options_for_select(@authors,@selected),{},{multiple: true}) %>
-  <% end %>
-
+  <div class="row">
+    <div class="col-md-6">
+      <%= render partial: 'simple_form' , locals: {f: f} %>
+    </div>
+    <div class="col-md-6">
+      <%= render partial: 'additional_attr' %> 
+    </div>
+  </div>
   <%= f.submit "Zapisz" %>
 <% end %>
 <!--  -->
