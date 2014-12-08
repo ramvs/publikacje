@@ -7,16 +7,17 @@
     <div class="col-md-6">
       <%= render partial: 'additional_attr' %> 
     </div>
+    <input type="text" hidden="true" id="pub_id" value="<%= @publication.id %>">
   </div>
   <%= f.submit "Zapisz" %>
 <% end %>
 <!--  -->
 <script>
-$("#publication_authors_id").chosen({
+$("#author_select").chosen({
 	width:"100%",
 	placeholder_text_multiple: "Wybierz autorów"
 });
-$("#publication_publication_subtype_id").chosen({
+$("#type_select").chosen({
 	width:"100%"
 })
 </script>

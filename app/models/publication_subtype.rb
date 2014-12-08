@@ -13,6 +13,10 @@ class PublicationSubtype < ActiveRecord::Base
 		end
 	end
 
+	def get_attributes
+		publication_type.publication_attributes
+	end
+
 	def full_name
 		"#{publication_type_name} - #{name}"
 	end

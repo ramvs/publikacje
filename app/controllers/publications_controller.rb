@@ -1,6 +1,7 @@
 class PublicationsController < ApplicationController
+  
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
-#
+  #
   # GET /publications
   # GET /publications.json
   def index
@@ -20,6 +21,14 @@ class PublicationsController < ApplicationController
     @types = PublicationType.prepare_type_list
     @selected = []
     @type = []
+  end
+
+  def params_list_new
+    @subtype = PublicationSubtype.find(params[:subtype])
+    @values = []
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /publications/1/edit

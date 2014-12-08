@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   get 'admin/users/:id/edit', to: 'admins#edit_user' , as: :admin_edit_user
   patch 'admin/users/:id' , to: 'admins#update_user' , as: :admin_user
 
-
-
+  match 'attributes/:subtype/:publication' , to: 'publications#params_list' , via: 'get'
+  match 'attributes/:subtype' , to: 'publications#params_list_new', via: 'get'
   devise_for :users , controllers: {registrations: "users/registrations"}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
