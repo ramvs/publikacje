@@ -1,5 +1,5 @@
 
-<%= bootstrap_form_for(@publication) do |f| %>
+<%= bootstrap_form_for(@publication , html: {id: "main_form"} ) do |f| %>
   <div class="row">
     <div class="col-md-6">
       <%= render partial: 'simple_form' , locals: {f: f} %>

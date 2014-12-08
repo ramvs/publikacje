@@ -11,3 +11,6 @@ $(document).ready () ->
 send_params_request = () ->
 	$.get '/attributes/'+$("#type_select").val()+'/'+$("#pub_id").val() ,
 		(data)->
+
+
+
