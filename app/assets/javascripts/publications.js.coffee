@@ -9,6 +9,8 @@ $(document).ready () ->
 	send_params_request()
 
 send_params_request = () ->
+	if $("#type_select").length==0
+		return
 	$.get '/attributes/'+$("#type_select").val()+'/'+$("#pub_id").val() ,
 		(data)->
 
