@@ -1,0 +1,17 @@
+
+
+<div class="row">
+<div class="col-md-8">
+<div class="panel panel-default">
+<div class="panel-heading">
+Edycja atrybutu publikacji
+</div>
+<div class="panel-body">
+	<%= bootstrap_form_for @attribute do |a| %>
+		<%= a.text_field :name , label: "Nazwa" , required: true %>
+		<%= a.submit "Zapisz", class: "btn btn-primary" %>
+	<% end %>
+</div>
+</div>
+</div>
+</div>

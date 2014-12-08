@@ -44,6 +44,7 @@ class PublicationsController < ApplicationController
       else
         @authors = Author.prepare_seletc_array
         @types = PublicationType.prepare_type_list
+        flash[:danger] = @publication.errors.full_messages
         @type = params[:publication][:publication_subtype_id]
         @selected = params[:publication][:authors][:id]
         format.html { render :new }
