@@ -2,14 +2,14 @@
   
   <%= f.text_field :name , label: "Nazwa" , required: true %>
   <%= f.fields_for :publication_attributes do |a| %>
-  	<%= a.select(:name,options_for_select(@attrs,@selected),{label: "Atrybuty"},{multiple: true})%>
+  	<%= a.select(:id,options_for_select(@attrs,@selected),{label: "Atrybuty"},{multiple: true,:id=>"attributes"} )%>
   <% end %>  
 
-  <%= f.submit "Utwórz" , class: "btn btn-primary" %>
+  <%= f.submit "Zapisz" , class: "btn btn-primary" %>
 <% end %>
 
 <script>
-$("#publication_type_publication_attributes_name").chosen({
+$("#attributes").chosen({
 	width:"100%",
 	placeholder_text_multiple: "Wybierz atrybuty"
 });

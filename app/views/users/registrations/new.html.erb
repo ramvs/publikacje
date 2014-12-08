@@ -9,7 +9,7 @@
   <%=f.fields_for :author , @user.author do |author| %>
      <%= author.text_field :name , label: "Imie", autofocus: true %>
      <%= author.text_field :surname, label: "Nazwisko" %>
-     <%= author.form_group :academic_degree , label: { text: "Stopień naukowy" }  do %>
+     <%= author.form_group :academic_degree , label: { text: "Tytuł naukowy" }  do %>
         <%= author.radio_button :academic_degree , "" , label: "brak" , chacked: true %>
         <%= author.radio_button :academic_degree , "inż. " , label: "inżynier" %>
         <%= author.radio_button :academic_degree , "mgr " , label: "magister" %>
