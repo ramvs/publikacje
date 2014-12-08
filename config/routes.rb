@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :publication_types
   resources :publications
   resources :publication_subtypes
-  resources :attributes
+  resources :publication_attributes
   get 'publications/index'
   get 'authors/index'
 

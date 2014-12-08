@@ -1,7 +1,8 @@
 <% if admin_signed_in? %>
  <%= navbar_dropdown fa_icon("cog", text: "Panel administratora") do %>
  	<%= navbar_item "Użytkownicy" , users_administrator_path %>
- 	<%= navbar_item "Rodzaje publikacji",publication_subtypes_path %>
- 	<%= navbar_item "Atrybuty",attributes_path  %>
+ 	<%= navbar_item "Typy publikacji", publication_types_path %>
+ 	<%= navbar_item "Podtypy publikacji",publication_subtypes_path %>
+ 	<%= navbar_item "Atrybuty",publication_attributes_path  %>
  <% end %>
 <% end %>

@@ -1,7 +1,8 @@
 class PublicationType < ActiveRecord::Base
 	has_many :publication_subtypes
-	has_many :attribute_positions
-
+	has_many :attribute_positions , inverse_of: :publication_type
+	has_many :publication_attributes, through: :attribute_positions
+	accepts_nested_attributes_for :attribute_positions
 	validates :name , presence: true , uniqueness: true
 	
 	def self.getId name

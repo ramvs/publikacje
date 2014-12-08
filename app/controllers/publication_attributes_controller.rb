@@ -1,10 +1,10 @@
-class AttributesController < ApplicationController
+class PublicationAttributesController < ApplicationController
   before_action :set_attribute, only: [:show, :edit, :update, :destroy]
 
   # GET /attributes
   # GET /attributes.json
   def index
-    @attributes = Attribute.all
+    @attributes = PublicationAttribute.all
   end
 
   # GET /attributes/1
@@ -14,7 +14,7 @@ class AttributesController < ApplicationController
 
   # GET /attributes/new
   def new
-    @attribute = Attribute.new
+    @attribute = PublicationAttribute.new
   end
 
   # GET /attributes/1/edit
@@ -24,10 +24,10 @@ class AttributesController < ApplicationController
   # POST /attributes
   # POST /attributes.json
   def create
-    @attribute = Attribute.new(attribute_params)
+    @attribute = PublicationAttribute.new(attribute_params)
       respond_to do |format|
       if @attribute.save
-        format.html { redirect_to attributes_path, notice: 'Attribute was successfully created.' }
+        format.html { redirect_to publication_attributes_path, notice: 'Attribute was successfully created.' }
         format.json { render :show, status: :created, location: @attribute }
       else
         format.html { render :new }
@@ -55,7 +55,7 @@ class AttributesController < ApplicationController
   def destroy
     @attribute.destroy
     respond_to do |format|
-      format.html { redirect_to attributes_url, notice: 'Attribute was successfully destroyed.' }
+      format.html { redirect_to publication_attributes_url, notice: 'Attribute was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -63,11 +63,11 @@ class AttributesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_attribute
-      @attribute = Attribute.find(params[:id])
+      @attribute = PublicationAttribute.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def attribute_params
-      params.require(:attribute).permit(:name, :type)
+      params.require(:publication_attribute).permit(:name, :type)
     end
 end

@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20141125195718) do
     t.boolean  "required"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "attribute_id"
+    t.integer  "publication_attribute_id"
     t.integer  "publication_type_id"
   end
 
@@ -29,14 +29,7 @@ ActiveRecord::Schema.define(version: 20141125195718) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "publication_id"
-    t.integer  "attribute_id"
-  end
-
-  create_table "attributes", force: true do |t|
-    t.string   "name"
-    t.string   "type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "publication_attribute_id"
   end
 
   create_table "author_positions", force: true do |t|
@@ -58,6 +51,13 @@ ActiveRecord::Schema.define(version: 20141125195718) do
   end
 
   add_index "authors", ["user_id"], name: "index_authors_on_user_id", using: :btree
+
+  create_table "publication_attributes", force: true do |t|
+    t.string   "name"
+    t.string   "type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "publication_subtypes", force: true do |t|
     t.string   "name"

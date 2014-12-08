@@ -1,6 +1,6 @@
 class CreateAttributes < ActiveRecord::Migration
   def change
-    create_table :attributes do |t|
+    create_table :publication_attributes do |t|
       t.string :name
       t.string :type
 

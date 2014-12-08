@@ -17,7 +17,7 @@
         <td> <%=attribute.name%></td>
         <td> <%=attribute.type%></td>
         <td><%= link_to 'Show', attribute %>
-        <%= link_to 'Edit', edit_attribute_path(attribute) %>
+        <%= link_to 'Edit', edit_publication_attribute_path(attribute) %>
         <%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
      <% end %>
@@ -26,5 +26,5 @@
 
 <br>
 
-<%= link_to 'New Attribute', new_attribute_path %>
+<%= link_to 'New Attribute', new_publication_attribute_path %>
 <!--  -->

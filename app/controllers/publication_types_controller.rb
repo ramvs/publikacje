@@ -15,17 +15,21 @@ class PublicationTypesController < ApplicationController
   # GET /publication_types/new
   def new
     @publication_type = PublicationType.new
+    @attrs = PublicationAttribute.prepare_select_array
+    @selected = []
   end
 
   # GET /publication_types/1/edit
   def edit
+    @attrs = PublicationAttribute.prepare_select_array
+    @selected = @publication_type.publication_attributes
   end
 
   # POST /publication_types
   # POST /publication_types.json
   def create
     @publication_type = PublicationType.new(publication_type_params)
-
+    @publication_type.attrs = PublicationAttribute.where(id: attributes_list)
     respond_to do |format|
       if @publication_type.save
         format.html { redirect_to @publication_type, notice: 'Publication type was successfully created.' }
@@ -70,5 +74,13 @@ class PublicationTypesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_type_params
        params.require(:publication_type).permit(:name)
+    end
+
+    def attributes_list
+      arry = Array.new
+      params[:publication_type][:publication_attributes][:name].each do |f|
+        arry << PublicationAttribute.getId(f)
+      end
+      return arry
     end
 end
