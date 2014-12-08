@@ -1,11 +1,11 @@
 class PublicationAttribute < ActiveRecord::Base
 	self.inheritance_column = nil
-	has_many :attribute_values
+	has_many :attribute_values , inverse_of: :publication_attribute
 	has_many :attribute_positions
 	validates :name, :type, presence: true
 
 	def self.prepare_select_array
-		self.all.order("name ASC").pluck(:name)
+		self.all.order("name ASC").pluck(:name,:id)
 	end
 
 	def self.getId name

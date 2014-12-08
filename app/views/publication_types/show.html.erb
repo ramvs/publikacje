@@ -1,0 +1,37 @@
+<h1><%= @publication_type.name %></h1>
+<div class = "row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<h4> Lista atrybutów </h4>
+						<ul>
+							<% @publication_type.publication_attributes.each do |a| %>
+								<li><%= a.name %></li>
+							<% end %>
+						</ul>
+					</div>
+					<div class="col-md-6">
+						<h4> Dostępne podtypy </h4>
+						<% if @publication_type.publication_subtypes.count > 0 %>
+							<ul>
+								<% @publication_type.publication_subtypes.each do |a| %>
+									<li><%= link_to a.name , a %></li>
+								<% end %>
+							</ul>
+						<% else %>
+							Brak
+						<% end %>
+					</div>
+				</div>
+			</div>
+			<div class="panel-footer">
+				<%= link_to 'Lista typów', publication_types_path %>
+				<%= link_to edit_publication_type_path(@publication_type), class: "pull-right label label-primary" do %>
+					<span>Edytuj</span>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

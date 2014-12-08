@@ -22,19 +22,21 @@ class PublicationTypesController < ApplicationController
   # GET /publication_types/1/edit
   def edit
     @attrs = PublicationAttribute.prepare_select_array
-    @selected = @publication_type.publication_attributes
+    @selected = @publication_type.publication_attributes.pluck(:id)
   end
 
   # POST /publication_types
   # POST /publication_types.json
   def create
     @publication_type = PublicationType.new(publication_type_params)
-    @publication_type.attrs = PublicationAttribute.where(id: attributes_list)
+    @publication_type.publication_attributes = attributes_list_param
     respond_to do |format|
       if @publication_type.save
         format.html { redirect_to @publication_type, notice: 'Publication type was successfully created.' }
         format.json { render :show, status: :created, location: @publication_type }
       else
+        @attrs = PublicationAttribute.prepare_select_array
+        @selected = params[:publication_type][:publication_attributes][:id]
         format.html { render :new }
         format.json { render json: @publication_type.errors, status: :unprocessable_entity }
       end
@@ -44,11 +46,14 @@ class PublicationTypesController < ApplicationController
   # PATCH/PUT /publication_types/1
   # PATCH/PUT /publication_types/1.json
   def update
+    @publication_type.publication_attributes = attributes_list_param
     respond_to do |format|
       if @publication_type.update(publication_type_params)
         format.html { redirect_to @publication_type, notice: 'Publication type was successfully updated.' }
         format.json { render :show, status: :ok, location: @publication_type }
       else
+        @attrs = PublicationAttribute.prepare_select_array
+        @selected = params[:publication_type][:publication_attributes][:id]
         format.html { render :edit }
         format.json { render json: @publication_type.errors, status: :unprocessable_entity }
       end
@@ -76,11 +81,7 @@ class PublicationTypesController < ApplicationController
        params.require(:publication_type).permit(:name)
     end
 
-    def attributes_list
-      arry = Array.new
-      params[:publication_type][:publication_attributes][:name].each do |f|
-        arry << PublicationAttribute.getId(f)
-      end
-      return arry
+    def attributes_list_param
+      PublicationAttribute.where(id: params[:publication_type][:publication_attributes][:id])
     end
 end
