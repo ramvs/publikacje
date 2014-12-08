@@ -1,6 +1,7 @@
 class PublicationsController < ApplicationController
+  
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
-#
+  #
   # GET /publications
   # GET /publications.json
   def index
@@ -22,6 +23,27 @@ class PublicationsController < ApplicationController
     @type = []
   end
 
+  def params_list_new
+    @subtype = PublicationSubtype.find(params[:subtype])
+    @values = []
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def params_list
+    @subtype = PublicationSubtype.find(params[:subtype])
+    publication = Publication.find(params[:publication])
+    if publication.publication_subtype.id == @subtype.id
+      @values = publication.attribute_values.pluck(:publication_attribute_id,:attribute_value)
+    else
+      @values=[]
+    end
+     respond_to do |format|
+      format.js {render 'params_list_new'}
+    end
+  end
+
   # GET /publications/1/edit
   def edit
     @publication = Publication.find(params[:id])
@@ -37,6 +59,7 @@ class PublicationsController < ApplicationController
     @publication = Publication.new(publication_params)
     @publication.user_id = current_user.id
     @publication.authors = Author.where(id: params[:publication][:authors][:id])
+    @publication.set_values params[:attribute]
     respond_to do |format|
       if @publication.save
         format.html { redirect_to publications_path, notice: 'Publication was successfully created.' }
@@ -58,6 +81,7 @@ class PublicationsController < ApplicationController
   def update
     @publication.attributes = publication_params
     @publication.authors = Author.where(id: params[:publication][:authors][:id])
+    @publication.set_values params[:attribute]
     respond_to do |format|
       if @publication.update(publication_params)
         format.html { redirect_to @publication, notice: 'Publication was successfully updated.' }
