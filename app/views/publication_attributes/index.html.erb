@@ -9,8 +9,8 @@
         <ul class="list-group">
           <% @attributes.each do |attribute| %>
             <li class="list-group-item">
-              <%=attribute.name%>
-              <td><%= link_to 'Pokaż', attribute , class: "pull-right label label-success" %>
+              <%= link_to attribute.name , attribute %>
+              <%= link_to 'Pokaż', attribute , class: "pull-right label label-success" %>
               <%= link_to 'Edytuj', edit_publication_attribute_path(attribute), class: "pull-right label label-default" if can? :edit , attribute %>
               <%= link_to 'Usuń', attribute, method: :delete, data: { confirm: 'Are you sure?' }, class: "pull-right label label-success" if can? :destroy , attribute %>
             </li>
