@@ -1,0 +1,7 @@
+<%= bootstrap_form_tag do |f| %>
+	<%= f.text_field :authors , label: "Autorzy" %>
+	<%= f.text_field :type , label: "Typ" %>
+	<%= f.text_field :subtype , label: "Podtyp" %>
+	<%= f.text_field :title , label: "Tytuł" %>
+	<%= f.submit "Wyszukaj" , class: "btn btn-primary" %>
+<% end %>
