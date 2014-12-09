@@ -4,7 +4,7 @@ class PublicationAttributesController < ApplicationController
   # GET /attributes
   # GET /attributes.json
   def index
-    @attributes = PublicationAttribute.all
+    @attributes = PublicationAttribute.all.order("name ASC")
   end
 
   # GET /attributes/1
@@ -19,11 +19,13 @@ class PublicationAttributesController < ApplicationController
 
   # GET /attributes/1/edit
   def edit
+    authorize! :edit , @attribute
   end
 
   # POST /attributes
   # POST /attributes.json
   def create
+    authorize! :create , PublicationAttribute
     @attribute = PublicationAttribute.new(attribute_params)
       respond_to do |format|
       if @attribute.save
@@ -39,6 +41,7 @@ class PublicationAttributesController < ApplicationController
   # PATCH/PUT /attributes/1
   # PATCH/PUT /attributes/1.json
   def update
+    authorize! :edit , @attribute
     respond_to do |format|
       if @attribute.update(attribute_params)
         format.html { redirect_to @attribute, notice: 'Attribute was successfully updated.' }
@@ -53,6 +56,7 @@ class PublicationAttributesController < ApplicationController
   # DELETE /attributes/1
   # DELETE /attributes/1.json
   def destroy
+    authorize! :destroy , @attribute
     @attribute.destroy
     respond_to do |format|
       format.html { redirect_to publication_attributes_url, notice: 'Attribute was successfully destroyed.' }

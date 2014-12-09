@@ -1,30 +1,23 @@
-<h1>Listing attributes</h1>
+<h1> Lista atrybutów </h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>Liczba atrybutów: <%= @attributes.count %></strong>
+        <%= link_to 'Nowy atrybut', new_publication_attribute_path, class: "label label-primary pull-right" if can? :create , PublicationAttribute %>
+      </div>
+        <ul class="list-group">
+          <% @attributes.each do |attribute| %>
+            <li class="list-group-item">
+              <%=attribute.name%>
+              <td><%= link_to 'Pokaż', attribute , class: "pull-right label label-success" %>
+              <%= link_to 'Edytuj', edit_publication_attribute_path(attribute), class: "pull-right label label-default" if can? :edit , attribute %>
+              <%= link_to 'Usuń', attribute, method: :delete, data: { confirm: 'Are you sure?' }, class: "pull-right label label-success" if can? :destroy , attribute %>
+            </li>
+          <% end %>
+        </ul>
+    </div>
+  </div>
+</div>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Atrybut numer</th>
-      <th>Nazwa</th>
-      <th>Typ</th>
-      <th>Akcje</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @attributes.each do |attribute| %>
-      <tr>
-        <td> <%=attribute.id%></td>
-        <td> <%=attribute.name%></td>
-        <td> <%=attribute.type%></td>
-        <td><%= link_to 'Show', attribute %>
-        <%= link_to 'Edit', edit_publication_attribute_path(attribute) %>
-        <%= link_to 'Destroy', attribute, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Attribute', new_publication_attribute_path %>
 <!--  -->
