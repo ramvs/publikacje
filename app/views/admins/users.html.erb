@@ -10,6 +10,7 @@
 		<th>Adres email</th>
 		<th>Administrator</th>
 		<th>Konto aktywne</th>
+		<th>Przypomnienie</th>
 		<th></th>
 	</tr>
 </thead>
@@ -22,6 +23,7 @@
 			<td><%= u.email %></td>
 			<td><%= yes_or_no u.admin %></td>
 			<td><%= yes_or_no u.approved %></td>
+			<td><%= yes_or_no u.reminder %></td>
 			<td>
 				<%= link_to "Usuń",admin_destroy_user_path(u),method: :delete, data: { confirm: 'Are you sure?' } %>| 
 				<%= link_to "Edytuj" ,admin_edit_user_path(u)  %>
