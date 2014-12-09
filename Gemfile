@@ -41,9 +41,11 @@ gem 'devise'
 gem 'bootstrap_form'
 gem 'jquery-turbolinks'
 gem 'sunspot_rails'
- group :development do
-    gem 'sunspot_solr'
-  end
+group :development do
+	gem 'sunspot_solr'
+end
+
+ gem "cancan"
 # Use unicorn as the app server
 # gem 'unicorn'
 

@@ -30,7 +30,7 @@
 				<%= link_to 'Back', publications_path, 
 					class: " label label-primary" %>
 				<%= link_to 'Edit', edit_publication_path(@publication), 
-					class: "pull-right label label-primary" %> 
+					class: "pull-right label label-primary"  if can? :edit , @publication %> 
 			</div>
 			
 		</div>

@@ -12,6 +12,10 @@ class User < ActiveRecord::Base
 
   validates :author , presence: true
 
+  def admin?
+    admin
+  end
+
   def full_name
   	author.full_name
   end

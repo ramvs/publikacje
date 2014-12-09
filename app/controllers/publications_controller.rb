@@ -5,7 +5,7 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    #@publications = Publication.all
+    authorize! :read , Publication
     @search = Publication.search do
       fulltext params[:search] do
         phrase_fields title: 3.0
@@ -19,10 +19,12 @@ class PublicationsController < ApplicationController
   # GET /publications/1.json
   def show
     @publication = Publication.find(params[:id])
+    authorize! :read , @publication
   end
 
   # GET /publications/new
   def new
+    authorize! :create , Publication
     @publication = Publication.new
     @authors = Author.prepare_seletc_array
     @types = PublicationType.prepare_type_list
@@ -50,6 +52,7 @@ class PublicationsController < ApplicationController
   # GET /publications/1/edit
   def edit
     @publication = Publication.find(params[:id])
+    authorize! :edit ,  @publication
     @authors = Author.prepare_seletc_array
     @types = PublicationType.prepare_type_list
     @type = @publication.publication_subtype.id
@@ -60,6 +63,7 @@ class PublicationsController < ApplicationController
   # POST /publications.json
   def create
     @publication = Publication.new(publication_params)
+    authorize! :create , @publication
     @publication.user_id = current_user.id
     @publication.authors = Author.where(id: params[:publication][:authors][:id])
     @publication.set_values params[:attribute]
@@ -82,6 +86,7 @@ class PublicationsController < ApplicationController
   # PATCH/PUT /publications/1
   # PATCH/PUT /publications/1.json
   def update
+    authorize! :edit ,  @publication
     @publication.attributes = publication_params
     @publication.authors = Author.where(id: params[:publication][:authors][:id])
     @publication.set_values params[:attribute]
@@ -99,6 +104,7 @@ class PublicationsController < ApplicationController
   # DELETE /publications/1
   # DELETE /publications/1.json
   def destroy
+    authorize! :destroy, @publication
     @publication.destroy
     respond_to do |format|
       format.html { redirect_to publications_url, notice: 'Publication was successfully destroyed.' }
