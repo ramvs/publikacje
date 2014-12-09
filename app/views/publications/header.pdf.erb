@@ -1,0 +1,9 @@
+<% if params[:format] && params[:format] == 'pdf' %>
+  <%= wicked_pdf_stylesheet_link_tag 'application' %>
+<% else %>
+  <%= stylesheet_link_tag 'application' %>
+<% end %>
+
+<div class="document">
+    <%= render :partial => 'publications/header.html.erb' %>
+</div>
