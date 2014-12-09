@@ -9,6 +9,10 @@ class Author < ActiveRecord::Base
  		return "#{academic_degree} #{surname} #{name}"
  	end
 
+ 	def biblio_name
+ 		return "#{surname} #{name[0]}."
+ 	end
+
  	def self.prepare_seletc_array
  		authors = Author.all.order("surname ASC")
  		ary = Array.new

@@ -37,6 +37,7 @@ gem 'devise'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap_form'
 gem 'jquery-turbolinks'
+gem 'sunspot_rails'
 # Use unicorn as the app server
 # gem 'unicorn'
 
