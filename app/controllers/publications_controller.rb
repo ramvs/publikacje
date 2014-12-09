@@ -41,11 +41,7 @@ class PublicationsController < ApplicationController
   def params_list
     @subtype = PublicationSubtype.find(params[:subtype])
     publication = Publication.find(params[:publication])
-    if publication.publication_subtype.id == @subtype.id
-      @values = publication.attribute_values.pluck(:publication_attribute_id,:attribute_value)
-    else
-      @values=[]
-    end
+    @values = publication.attrs_values @subtype.id
      respond_to do |format|
       format.js {render 'params_list_new'}
     end

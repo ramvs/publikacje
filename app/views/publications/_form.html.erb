@@ -1,15 +1,17 @@
 
-<%= bootstrap_form_for(@publication , html: {id: "main_form"} ) do |f| %>
+
   <div class="row">
     <div class="col-md-6">
+    <%= bootstrap_form_for(@publication , html: {id: "main_form"} ) do |f| %>
       <%= render partial: 'simple_form' , locals: {f: f} %>
+      <%= f.submit "Zapisz" %>
     </div>
     <div class="col-md-6">
       <%= render partial: 'additional_attr' %> 
     </div>
     <input type="text" hidden="true" id="pub_id" value="<%= @publication.id %>">
   </div>
-  <%= f.submit "Zapisz" %>
+  
 <% end %>
 <!--  -->
 <script>

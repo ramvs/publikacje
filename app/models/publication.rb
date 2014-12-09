@@ -35,20 +35,26 @@ class Publication < ActiveRecord::Base
 	def set_values arguments
 		attributes = []
 		publication_subtype.get_attributes.each do |attr|
-			val = arguments["#{attr.id}"]
+			val = arguments["#{attr.id}"] unless arguments == nil
 			raise "Error. Missing argument for #{attr.name} attribute" if val == nil
-
-			#value = attribute_values.where(publication_attribute: attr).first
-
-			#if value == nil
-				value = AttributeValue.new(publication_attribute: attr, 
-				attribute_value: val, publication: self)
-			#end
-
+			value = AttributeValue.new(publication_attribute: attr, 
+			attribute_value: val, publication: self)
 			attributes << value
 		end
 		attribute_values = []
 		self.attribute_values = attributes
+	end
+
+	def attrs_values subtype_id
+		if publication_subtype.id == subtype_id
+      		arry = {}
+      		attribute_values.each do |f|
+      			arry[f.publication_attribute.id]=f.attribute_value
+      		end
+      		return arry
+    	else
+      		return []
+    	end
 	end
 
 	
