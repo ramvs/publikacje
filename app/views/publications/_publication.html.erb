@@ -3,6 +3,7 @@
     <%= link_to 'Pokaż', publication %>
     <%= link_to 'Edytuj', edit_publication_path(publication) %>
     <%= link_to 'Usuń', publication, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'PDF', publication_path(publication, :format=> :pdf) %>
   </span>  
   <span class="pull-right label label-default">
     <%= publication.user.email %> 
