@@ -19,6 +19,13 @@ gem "font-awesome-rails"
 gem "twitter-bootstrap-rails"
 gem 'rails_bootstrap_navbar'
 gem 'pry-rails'
+
+#pdf generator
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+#word generator
+gem 'htmltoword'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
