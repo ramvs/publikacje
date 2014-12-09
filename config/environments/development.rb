@@ -34,4 +34,20 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+require 'tlsmail'
+      Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+      ActionMailer::Base.delivery_method = :smtp
+      ActionMailer::Base.perform_deliveries = true
+      ActionMailer::Base.raise_delivery_errors = true
+      ActionMailer::Base.smtp_settings = {
+          :address =>  "smtp.gmail.com",
+          :port =>  "587",
+          :domain =>  "gmail.com",
+          :enable_starttls_auto =>  true,
+          :authentication => :login,
+          :user_name => "publikacje.kia@gmail.com",
+          :password => "superhaslo123"
+      }
+ 
+    config.action_mailer.raise_delivery_errors = true
 end
