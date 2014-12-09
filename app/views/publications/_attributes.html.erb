@@ -1,15 +1,15 @@
 <% if @subtype.get_attributes.any? %>
-	<form id="attributes_form" role="form">
+	
 		<% @subtype.get_attributes.each do |a| %>
 			<div class="form-group">
-				<% val = @values[a.id-1] %>
 				<label><%= a.name %></label>
 				<input class="attribute_value form-control" type="text"
 					   name = "attribute[<%= a.id %>]" required 
-					   value = "<%= val[1] if val %>" >
+					   value = "<%= @values[a.id] %>" >
 			</div>
 		<% end %>
-	</form>
+	
 <% else %>
 	Brak dodatkowych parametrów do uzupełnienia
 <% end %>
+

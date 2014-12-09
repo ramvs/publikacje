@@ -5,6 +5,9 @@
 $(document).on "change" , "#type_select" , () ->
 	send_params_request()
 
+$(document).on "submit" , "#main_form" , (ev) ->
+	$(this).append $(".attribute_value")
+
 $(document).ready () ->
 	send_params_request()
 
@@ -13,6 +16,7 @@ send_params_request = () ->
 		return
 	$.get '/attributes/'+$("#type_select").val()+'/'+$("#pub_id").val() ,
 		(data)->
+
 
 
 
