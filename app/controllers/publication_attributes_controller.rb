@@ -14,6 +14,7 @@ class PublicationAttributesController < ApplicationController
 
   # GET /attributes/new
   def new
+    authorize! :create , PublicationAttribute
     @attribute = PublicationAttribute.new
   end
 

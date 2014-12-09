@@ -1,30 +1,36 @@
-<h1>Listing Publications Subtypes</h1>
+<h1>Lista rodzajów publikacji</h1>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Podtyp publikacji numer</th>
-      <th>Typ</th>
-      <th>Podtyp</th>
-      <th>Akcje</th>
-    </tr>
-  </thead>
+<div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <strong>Liczba elementów: </strong><%= @publication_subtypes.count %>
+          <%= link_to 'Nowy podtyp', new_publication_subtype_path  ,class: "pull-right label label-default" if can? :create , PublicationSubtype %>
+        </div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Typ</th>
+              <th>Podtyp</th>
+              <th>Akcje</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @publication_subtypes.each do |publication_subtype| %>
+              <tr>
+                <td> <%=link_to publication_subtype.publication_type_name, publication_subtype.publication_type %></td>
+                <td> <%=publication_subtype.name%></td>
+                <td><%= link_to 'Pokaż', publication_subtype %>
+                <%= link_to 'Edytuj', edit_publication_subtype_path(publication_subtype) if can? :edit, PublicationSubtype %>
+                <%= link_to 'Usuń', publication_subtype, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy , publication_subtype %></td>
+              </tr>
+             <% end %>
+          </tbody>
+        </table>
+        <div class="panel-footer">
+        </div>
+      </div>
+  </div>
+</div>
 
-  <tbody>
-    <% @publication_subtypes.each do |publication_subtype| %>
-      <tr>
-        <td> <%=publication_subtype.id%></td>
-        <td> <%=link_to publication_subtype.publication_type_name, publication_subtype.publication_type %></td>
-        <td> <%=publication_subtype.name%></td>
-        <td><%= link_to 'Show', publication_subtype %>
-        <%= link_to 'Edit', edit_publication_subtype_path(publication_subtype) %>
-        <%= link_to 'Destroy', publication_subtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Publication Subtype', new_publication_subtype_path %>
 <!--  -->

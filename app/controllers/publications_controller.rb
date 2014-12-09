@@ -86,7 +86,7 @@ class PublicationsController < ApplicationController
   # POST /publications.json
   def create
     @publication = Publication.new(publication_params)
-    authorize! :create , @publication
+    authorize! :create , Publication
     @publication.user_id = current_user.id
     @publication.authors = Author.where(id: params[:publication][:authors][:id])
     @publication.set_values params[:attribute]

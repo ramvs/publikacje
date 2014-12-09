@@ -1,14 +1,3 @@
-<h1>Edycja - <%= @publication_type.name %></h1>
+<h1>Edycja</h1>
+<%= render partial: 'form' , locals: {title: @publication_type.name} %>
 
-<div class = "row">
-	<div class="col-md-8">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<%= render 'form' %>
-			</div>
-			<div class="panel-footer">
-				<%= link_to 'Back', publication_types_path %>
-			</div>
-		</div>
-	</div>
-</div>

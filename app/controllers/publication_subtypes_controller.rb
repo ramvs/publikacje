@@ -13,19 +13,21 @@ class PublicationSubtypesController < ApplicationController
 
   # GET /publication_subtypes/new
   def new
+    authorize! :create , PublicationSubtype
     @subtype = PublicationSubtype.new
     setup_type_options
   end
 
   # GET /publication_subtypes/1/edit
   def edit
-   @subtype = PublicationSubtype.find(params[:id])
-   setup_type_options
+    authorize! :edit, @subtype
+    setup_type_options
   end
 
   # POST /publication_subtypes
   # POST /publication_subtypes.json
   def create
+    authorize! :create , PublicationSubtype
    respond_to do |format|
       @subtype = PublicationSubtype.new(name: params[:name], publication_type_id: PublicationType.getId(params[:kind]))
       if @subtype.save
@@ -41,7 +43,7 @@ class PublicationSubtypesController < ApplicationController
   end
 
   def update 
-    @subtype = PublicationSubtype.find(params[:id])
+    authorize! :edit , @subtype
     @subtype.publication_type_id = PublicationType.getId(params[:kind]) 
     respond_to do |format|
       if @subtype.save
@@ -58,6 +60,7 @@ class PublicationSubtypesController < ApplicationController
   # DELETE /publication_subtypes/1
   # DELETE /publication_subtypes/1.json
   def destroy
+    authorize! :destroy , @subtype
     @subtype.destroy
     respond_to do |format|
       format.html { redirect_to publication_subtypes_url, notice: 'Publication subtype was successfully destroyed.' }
