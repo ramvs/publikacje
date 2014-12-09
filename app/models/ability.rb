@@ -4,12 +4,13 @@ class Ability
   def initialize(user)
     user ||= User.new
 
-    can :read , [Publication,PublicationAttribute] 
+    can :read , [Publication,PublicationAttribute,PublicationType] 
 
     if user.admin?
         can [:read,:index,:destroy,:edit] , [User]
         can [:destroy , :edit , :create ] , [Publication]
         can [:create , :edit , :destroy ] , [PublicationAttribute]
+        can [:create , :edit , :destroy ] , [PublicationType]
     elsif user.approved
         can [:create,:edit,:destroy] , [Publication] , :user_id => user.id
     end

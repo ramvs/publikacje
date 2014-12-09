@@ -1,28 +1,27 @@
-<h1>Listing Publications Types</h1>
+<h1>Lista typów publikacji</h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>Liczba typów: <%= @publication_types.count %></strong>
+        <%= link_to 'Nowy typ', new_publication_type_path ,class: "label label-success pull-right" if can? :create , PublicationType %>
+      </div>
+      <ul class="list-group">
+          <% @publication_types.each do |p| %>
+            <li class="list-group-item">
+              <%= link_to p.name , p %>
+              <%= link_to 'Pokaż', publication_type_path(p) ,class: "label label-primary pull-right" %>
+              <%= link_to 'Edytuj', edit_publication_type_path(p) ,class: "label label-default pull-right" if can? :edit , p %>
+              <%= link_to 'Usuń', p, method: :delete, data: { confirm: 'Are you sure?' } ,class: "label label-primary pull-right" if can? :destroy , p %>
+            </li>
+         <% end %>
+      </ul>
+      <div class="panel-footer">
+      </div>
+    </div>
+  </div>
+</div>
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Typ publikacji numer</th>
-      <th>Nazwa</th>
-      <th>Akcje</th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @publication_types.each do |p| %>
-      <tr>
-        <td> <%=p.id%></td>
-        <td> <%=p.name%></td>
-        <td><%= link_to 'Show', publication_type_path(p) %>
-        <%= link_to 'Edit', edit_publication_type_path(p) %>
-        <%= link_to 'Destroy', p, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Publication Type', new_publication_type_path %>
 <!--  -->
