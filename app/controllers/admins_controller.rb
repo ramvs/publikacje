@@ -25,10 +25,14 @@ class AdminsController < ApplicationController
 			flash[:danger] = "Cannot update"
 			render 'edit_user'
 		end
+		if @user.reminder.present?
+ 			ReminderMailer.reminder_mail(@user).deliver
+		end
+
 	end
 
 	private
 		def user_params
-			params.require(:user).permit(:admin,:approved)
+			params.require(:user).permit(:admin,:approved,:reminder)
 		end
 end
