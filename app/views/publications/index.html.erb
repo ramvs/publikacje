@@ -1,32 +1,36 @@
-<h1>Listing publications</h1>
+<h3></h3>
+<div class="row">
+  <div class="col-md-8">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <strong>Lista publikacji</strong>
+        <%= link_to 'Nowa publikacja', new_publication_path , class: "label label-primary label-lg pull-right" %>
+      </div>
+      <% if @publications.any? %>
+        <ul class="list-group">
+          <%= render @publications %>
+        </ul>
+      <% else %>
+        <div class="panel-body"> Brak publikacji </div>
+      <% end %>
+      <div class="panel-footer">    
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">Wyszukiwanie</div>
+      <div class="panel-body">
 
-<table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Publikacja numer</th>
-      <th>Tytuł</th>
-      <th>Typ</th>
-      <th>Dodane przez</th>
-      <th>Akcje</th>
-    </tr>
-  </thead>
+      </div>
+      <div class="panel-footer">
 
-  <tbody>
-    <% @publications.each do |publication| %>
-      <tr>
-        <td> <%=publication.id%></td>
-        <td> <%= link_to publication.title , publication %></td>
-        <td> <%=publication.publication_subtype.full_name%></td>
-        <td> <%=User.find(publication.user_id).email %></td>
-        <td><%= link_to 'Show', publication %>
-        <%= link_to 'Edit', edit_publication_path(publication) %>
-        <%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-     <% end %>
-  </tbody>
-</table>
+      </div>
+    </div>
+  </div>
+</div>
 
 <br>
 
-<%= link_to 'New Publication', new_publication_path %>
+
 <!--  -->

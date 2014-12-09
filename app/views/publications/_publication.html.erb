@@ -1,0 +1,15 @@
+<li class="list-group-item libib">
+  <span class="pull-right label label-success">
+    <%= link_to 'Pokaż', publication %>
+    <%= link_to 'Edytuj', edit_publication_path(publication) %>
+    <%= link_to 'Usuń', publication, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </span>  
+  <span class="pull-right label label-default">
+    <%= publication.user.email %> 
+  </span>
+  <span>
+    <%= publication.biblio_authors %>,
+    <i> <%= link_to publication.title , publication %>, </i>
+    <%=publication.publication_subtype.full_name%>
+  </span>     
+</li>

@@ -13,6 +13,14 @@ class Publication < ActiveRecord::Base
 		publication_subtype.publication_type.publication_attributes
 	end
 
+	def biblio_authors
+		string = ""
+		authors.each do |a|
+			string+=a.biblio_name+" "
+		end
+		return string
+	end
+
 	def set_values arguments
 		attributes = []
 		publication_subtype.get_attributes.each do |attr|
