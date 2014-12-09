@@ -1,0 +1,7 @@
+<% @publications.each do |p| %>
+    <ul>
+   		 <li> <b><%=p.id%>.</b>  <%=p.biblio_authors%> : <i><%=p.title%> </i> 
+   		  <%=p.publication_subtype.full_name%> <%=p.created_at.year%>
+    </li>
+    </ul>
+   <% end %>

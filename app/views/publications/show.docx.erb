@@ -1,1 +1,54 @@
-<%= render partial: 'publications/showpdf.html.erb'%>
+<h1><img src="http://www.robo.prz-rzeszow.pl/KIA-LOGO.GIF"> Informacje o publikacji </h1>
+
+<div class ="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong>Tytuł: </strong><%= @publication.title %>
+			</div>
+			
+			<ul class="list-group">
+			<li class="list-group-item"><strong>Typ: </strong><%= @publication.publication_subtype.full_name %></li>
+			<li class="list-group-item"><strong>Opis: </strong><%= @publication.description %></li>
+			<li class="list-group-item"><strong>Dodane przez: </strong><%= "#{@publication.user.full_name} , #{@publication.user.email}" %></li>
+			<li class="list-group-item"><strong>Data dodania: </strong><%= @publication.created_at %></li>
+			<li class="list-group-item"><strong>Data aktualizacji: </strong><%= @publication.updated_at %></li>
+			<li class="list-group-item">
+				<strong> Lista autorów: </strong>
+				<ul class="list-group">
+					<% @publication.authors.each do |a| %>
+						<li class="list-group-item">
+							<strong><%= "#{a.full_name}, " %></strong>
+							<%= a.email %>
+						</li>
+					<% end %>
+				</ul>
+			</li>
+			</ul>
+
+					
+		</div>
+	</div>
+
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Dodatkowe parametry
+			</div>
+			<% if @publication.attribute_values.any? %>
+				<ul class="list-group">
+					<% @publication.attribute_values.each do |f| %>
+						<li class="list-group-item">
+							<strong>
+							<%= f.publication_attribute.name %>:
+							</strong>
+							<%= f.attribute_value %>
+						</li>
+					<% end %>
+				</ul>
+			<% else %>
+				<div class="panel-body">Brak dodatkowych parametrów.</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -4,7 +4,8 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>Lista publikacji</strong>
-        <%= link_to 'Nowa publikacja', new_publication_path , class: "label label-primary label-lg pull-right" if can? :create , Publication  %>
+         <%= link_to fa_icon("file-pdf-o", text: "Lista publikacji PDF"), publications_path(:format=> :pdf), class: "label label-primary label-lg pull-right" %>
+         <%= link_to 'Nowa publikacja', new_publication_path , class: "label label-primary label-lg pull-right" if can? :create , Publication  %>
       </div>
       <% if @publications.any? %>
         <ul class="list-group">

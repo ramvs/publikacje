@@ -1,7 +1,8 @@
 class PublicationsController < ApplicationController
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   #
-    respond_to :docx
+  respond_to :docx
+
   # GET /publications
   # GET /publications.json
   def index
@@ -13,6 +14,14 @@ class PublicationsController < ApplicationController
       end
     end
     @publications = @search.results
+     respond_to do |format|
+     format.pdf do
+        render :pdf => "file_name", 
+        :template => 'publications/index.pdf.erb',
+        :encoding  => "UTF-8"
+      end
+      format.html
+    end
   end
 
   # GET /publications/1
@@ -20,6 +29,7 @@ class PublicationsController < ApplicationController
   def show
     @publication = Publication.find(params[:id])
     authorize! :read , @publication   
+
     respond_to do |format|
      format.pdf do
         render :pdf => "file_name", 
@@ -27,13 +37,12 @@ class PublicationsController < ApplicationController
         :encoding  => "UTF-8"
       end
       format.docx do
-      render docx: 'show', filename: 'my_file.docx'
-        # Alternatively, if you don't want to create the .docx.erb template you could
+      render docx: 'my_view', filename: 'my_file.docx'
+      # Alternatively, if you don't want to create the .docx.erb template you could
       # render docx: 'my_file.docx', content: '<html><body>some html</body></html>'
-      end
+    end
       format.html
-  end
-
+   end
   end
 
   # GET /publications/new

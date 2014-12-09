@@ -58,7 +58,7 @@ GEM
       railties (>= 3.2, < 5.0)
     gem_config (0.3.1)
     hike (1.2.3)
-    htmltoword (0.2.0)
+    htmltoword (0.1.8)
       actionpack
       nokogiri
       rubyzip

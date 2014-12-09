@@ -29,7 +29,6 @@ gem 'whenever', :require => false
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 #word generator
-gem 'htmltoword'
 
 
 # Use jquery as the JavaScript library
@@ -64,4 +63,5 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+gem 'htmltoword' 
 

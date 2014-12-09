@@ -1,9 +1,10 @@
 <li class="list-group-item libib">
   <span class="pull-right label label-success">
-    <%= link_to 'Pokaż', publication if can? :read , publication %>
-    <%= link_to 'Edytuj', edit_publication_path(publication) if can? :edit , publication %>
-    <%= link_to 'Usuń', publication, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy , publication %>
-    <%= link_to 'PDF', publication_path(publication, :format=> :pdf) %>
+    <%= link_to fa_icon("file", text: "Pokaż"), publication if can? :read , publication %>
+    <%= link_to fa_icon("edit", text: "Edytuj"), edit_publication_path(publication) if can? :edit , publication %>
+    <%= link_to fa_icon("remove", text: "Usuń"), publication, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy , publication %>
+    <%= link_to fa_icon("file-pdf-o", text: "PDF"), publication_path(publication, :format=> :pdf) %>
+     <%= link_to fa_icon("file-word-o", text: "DOCX"), publication_path(publication, :format=> :docx) %>
   </span>  
   <span class="pull-right label label-default">
     <%= publication.user.email %> 
