@@ -1,5 +1,19 @@
-<%= bootstrap_form_for(@attribute) do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_field :type %>
-  <%= f.submit "Zapisz" %>
-<% end %>
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+			<%= title %>
+			</div>
+			<div class="panel-body">
+				<%= bootstrap_form_for(@attribute) do |f| %>
+					<%= f.text_field :name , label: "Nazwa" %>
+					<%= f.text_field :type , label: "Typ" %>
+					<%= f.submit "Zapisz" , class: "btn btn-success" %>
+				<% end %>
+			</div>
+			<div class="panel-footer">
+				<%= link_to 'Powrót', publication_attributes_path ,class: "label label-primary" %>
+			</div>
+		</div>
+	</div>
+</div>

@@ -4,7 +4,7 @@ class PublicationTypesController < ApplicationController
   # GET /publication_types
   # GET /publication_types.json
   def index
-    @publication_types = PublicationType.all
+    @publication_types = PublicationType.all.order("name ASC")
   end
 
   # GET /publication_types/1
@@ -14,6 +14,7 @@ class PublicationTypesController < ApplicationController
 
   # GET /publication_types/new
   def new
+    authorize! :create , PublicationType
     @publication_type = PublicationType.new
     @attrs = PublicationAttribute.prepare_select_array
     @selected = []
@@ -21,6 +22,7 @@ class PublicationTypesController < ApplicationController
 
   # GET /publication_types/1/edit
   def edit
+    authorize! :edit , @publication_type
     @attrs = PublicationAttribute.prepare_select_array
     @selected = @publication_type.publication_attributes.pluck(:id)
   end
@@ -28,6 +30,7 @@ class PublicationTypesController < ApplicationController
   # POST /publication_types
   # POST /publication_types.json
   def create
+    authorize! :create , PublicationType
     @publication_type = PublicationType.new(publication_type_params)
     @publication_type.publication_attributes = attributes_list_param
     respond_to do |format|
@@ -46,6 +49,7 @@ class PublicationTypesController < ApplicationController
   # PATCH/PUT /publication_types/1
   # PATCH/PUT /publication_types/1.json
   def update
+    authorize! :edit , @publication_type
     @publication_type.publication_attributes = attributes_list_param
     respond_to do |format|
       if @publication_type.update(publication_type_params)
@@ -63,6 +67,7 @@ class PublicationTypesController < ApplicationController
   # DELETE /publication_types/1
   # DELETE /publication_types/1.json
   def destroy
+    authorize! :destroy , @publication_type
     @publication_type.destroy
     respond_to do |format|
       format.html { redirect_to publication_types_url, notice: 'Publication type was successfully destroyed.' }
