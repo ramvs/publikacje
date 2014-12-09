@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-6">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<%= link_to "Edycja" , edit_publication_subtype_path(@subtype) ,
+					class: "label label-primary" if can? :edit , @subtype %>
+			</div>
+			<div class="panel-body">
+				<strong>Nazwa: </strong><%= @subtype.full_name %>
+			</div>
+			<div class="panel-footer">
+				<%= link_to "Lista podtypów" , publication_subtypes_path , class: "label label-primary" %>
+			</div>
+		</div>
+	</div>
+</div>
