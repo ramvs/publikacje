@@ -9,6 +9,17 @@ class Publication < ActiveRecord::Base
 	accepts_nested_attributes_for :author_positions
 	accepts_nested_attributes_for :attribute_values
 
+	searchable do
+		text :title
+		text :description
+		text :authors do
+			authors.map {|author| author.full_name}
+		end
+		text :type do
+			publication_subtype.full_name
+		end
+	end
+
 	def self.form_attributes
 		publication_subtype.publication_type.publication_attributes
 	end

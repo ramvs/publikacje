@@ -5,7 +5,14 @@ class PublicationsController < ApplicationController
   # GET /publications
   # GET /publications.json
   def index
-    @publications = Publication.all
+    #@publications = Publication.all
+    @search = Publication.search do
+      fulltext params[:search] do
+        phrase_fields title: 3.0
+        fields(:authors,:title,:type)
+      end
+    end
+    @publications = @search.results
   end
 
   # GET /publications/1
