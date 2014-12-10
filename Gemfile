@@ -55,6 +55,7 @@ group :development do
 end
 
  gem "cancan"
+ gem 'public_activity'
 # Use unicorn as the app server
 # gem 'unicorn'
 
