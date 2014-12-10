@@ -43,7 +43,7 @@ class Publication < ActiveRecord::Base
 			value = AttributeValue.new(publication_attribute: attr, 
 			attribute_value: val, publication: self)
 			attributes << value
-		end
+		end if publication_subtype
 		attribute_values = []
 		self.attribute_values = attributes
 	end

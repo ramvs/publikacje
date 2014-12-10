@@ -3,7 +3,7 @@
 		<%= time_ago_in_words(activity.created_at) %> ago
 	</span>
 	<% if activity.owner %>
-		Użytkownik: <strong><%= link_to activity.owner.full_name , activity.owner.author %> </strong>
+		Użytkownik: <strong><%= link_to activity.owner.full_name , activity.owner.author  %> </strong>
 		dodał nowego  autora:
 		 <strong>
 			<% if activity.trackable %>
@@ -13,6 +13,15 @@
 			<% end %>
 		</strong>
 	<% else %>
-		Użytkownik <strong><%= activity.trackable.full_name %></strong> zarejestrował się w systemie.
+		Użytkownik 
+		<strong>
+			<%= link_to activity.trackable.full_name , activity.trackable if activity.trackable %>
+		</strong> 
+		zarejestrował się w systemie 
+		<% if activity.trackable %>
+			.
+		<% else %>
+			, ale został usunięty
+		<% end %>
 	<% end %>
 </div>

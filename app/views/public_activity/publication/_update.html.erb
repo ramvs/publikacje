@@ -3,7 +3,7 @@
 		<span class="pull-right label label-primary">
 			<%= time_ago_in_words(activity.created_at) %> ago
 		</span>
-		Użytkownik: <strong><%= link_to activity.owner.full_name , activity.owner.author %> </strong>
+		Użytkownik <strong><%= link_to activity.owner.full_name , activity.owner.author if activity.owner %> </strong>
 		edytował  publikację. 
 
 		<% if activity.trackable %>
