@@ -1,6 +1,6 @@
 class Publication < ActiveRecord::Base
 	include PublicActivity::Model
-  	tracked
+  	tracked except: :destroy, owner: Proc.new{ |controller, model| controller.current_user }
 
 	has_many :attribute_values , inverse_of: :publication , :dependent => :destroy
 	has_many :author_positions , inverse_of: :publication

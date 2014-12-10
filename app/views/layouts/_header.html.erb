@@ -2,12 +2,8 @@
   <%= navbar fixed: :top, inverse:  true, responsive:  true do %>
     <%= navbar_collapse do %>
       <%= navbar_group align: 'right' do %>
-        <% if user_signed_in? %>
           <%=navbar_item fa_icon("home", text: "Home"), root_path  %>
           <%= navbar_item fa_icon("list", text: "Publikacje"), publications_path %>
-        <% else %>
-          <%=navbar_item fa_icon("home", text: "Home"), publications_path  %>
-        <% end %>
         <%=navbar_item fa_icon("users", text: "Autorzy"), authors_path %>
         <% if user_signed_in? %>
           <%= render 'layouts/admin_menu' %>

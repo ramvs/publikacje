@@ -1,7 +1,7 @@
-<div class="panel-heading">
-		Edytowano dane autora
-</div>
 <div class="panel-body">
+	<span class="pull-right label label-primary">
+		<%= time_ago_in_words(activity.created_at) %> ago
+	</span>
 	Użytkownik: <strong><%= link_to activity.owner.full_name , activity.owner.author %> </strong>
 	zedytował dane autora: 
 	<strong>
@@ -11,7 +11,4 @@
 			<%= activity.info %>
 		<% end %>
 	</strong>
-</div>
-<div class="panel-footer">
-	<%= time_ago_in_words(activity.created_at) %> ago
 </div>

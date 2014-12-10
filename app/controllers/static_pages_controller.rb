@@ -7,11 +7,7 @@ class StaticPagesController < ApplicationController
 
   private
   	def setup
-  		if user_signed_in?
-  			@activities = PublicActivity::Activity.all.order("created_at DESC")
-  		else
-  			redirect_to publications_path
-  		end
+  	@activities = PublicActivity::Activity.all.paginate(:page => params[:page],:per_page => 15).order("created_at DESC")
   	end
 
 end
