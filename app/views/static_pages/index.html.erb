@@ -1,12 +1,13 @@
-<div class="page-header"><h1>Aktualności</h1></div>
+<h1 class="page-header">Aktualności</h1>
 <div class="row">
 	<div class="col-md-8">
+		<%= will_paginate @activities , class: "pull-right" %>
 		<% if @activities.any? %>
 			<%= render_activities(@activities, layout: :activity)  %>
 		<% else %>
 			<div class="well well-lg">Brak wydarzeń.</div>
 		<% end %>
-		<%= will_paginate @activities, renderer: BootstrapPagination::Rails %>
+		<%= will_paginate @activities, class: "pull-right" %>
 	</div>
 
 	<div class="col-md-4">

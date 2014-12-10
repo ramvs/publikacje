@@ -12,6 +12,9 @@ class PublicationsController < ApplicationController
         phrase_fields title: 3.0
         fields(:authors,:title,:type)
       end
+      order_by :created_at, :desc 
+      with :user_id , current_user.id if params[:only_me]=="1" && user_signed_in?
+      paginate( :page => params[:page]||1 )
     end
     @publications = @search.results
      respond_to do |format|
@@ -20,7 +23,10 @@ class PublicationsController < ApplicationController
         :template => 'publications/index.pdf.erb',
         :encoding  => "UTF-8"
       end
-      format.html {@search_param = params[:search]}
+      format.html {
+        @search_param = params[:search]
+        @search_only_me = params[:only_me]
+      }
     end
   end
 

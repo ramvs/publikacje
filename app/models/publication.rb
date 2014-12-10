@@ -15,12 +15,18 @@ class Publication < ActiveRecord::Base
 	searchable do
 		text :title
 		text :description
+		integer :user_id 
+		integer :author_ids, multiple: true do
+			authors.map {|author| author.id }
+		end
+
 		text :authors do
 			authors.map {|author| author.full_name}
 		end
 		text :type do
 			publication_subtype.full_name
 		end
+		time :created_at
 	end
 
 	def self.form_attributes

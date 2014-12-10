@@ -5,6 +5,12 @@
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<strong>Tytuł: </strong><%= @publication.title %>
+				<span class="label label-primary pull-right">
+				<%= link_to fa_icon("edit", text: "Edytuj"), edit_publication_path(@publication) if can? :edit , @publication %>
+			    <%= link_to fa_icon("remove", text: "Usuń"), @publication, method: :delete, data: { confirm: 'Are you sure?' } if can? :destroy , @publication %>
+			    <%= link_to fa_icon("file-pdf-o", text: "PDF"), publication_path(@publication, :format=> :pdf) %>
+			     <%= link_to fa_icon("file-word-o", text: "DOCX"), publication_path(@publication, :format=> :docx) %>
+			     </span>
 			</div>
 			
 			<ul class="list-group">
@@ -18,7 +24,7 @@
 				<ul class="list-group">
 					<% @publication.authors.each do |a| %>
 						<li class="list-group-item">
-							<strong><%= "#{a.full_name}, " %></strong>
+							<strong><%= link_to "#{a.full_name}, ", a %></strong>
 							<%= a.email %>
 						</li>
 					<% end %>
@@ -27,7 +33,7 @@
 			</ul>
 
 			<div class="panel-footer">
-				<%= link_to 'Back', publications_path, 
+				<%= link_to 'Lista wszystkich publikacji', publications_path, 
 					class: " label label-primary" %>
 				<%= link_to 'Edit', edit_publication_path(@publication), 
 					class: "pull-right label label-primary"  if can? :edit , @publication %> 

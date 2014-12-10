@@ -45,6 +45,7 @@ class PublicationSubtypesController < ApplicationController
   def update 
     authorize! :edit , @subtype
     @subtype.publication_type_id = PublicationType.getId(params[:kind]) 
+    @subtype.name=params[:name]
     respond_to do |format|
       if @subtype.save
         format.html { redirect_to @subtype, notice: 'Publication subtype was successfully updated.' }

@@ -1,0 +1,3 @@
+<%= link_to fa_icon("file-pdf-o", text: "Lista publikacji PDF"),
+	params.merge(search: @search_param,only_me: @search_only_me,format: :pdf),
+	class: "label label-primary pull-right" %>

@@ -4,8 +4,8 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <strong>Lista publikacji</strong>
-         <%= render 'search_link' %>
-         <%= link_to 'Nowa publikacja', new_publication_path , class: "label label-primary label-lg pull-right" if can? :create , Publication  %>
+         <%= render 'shared/pdf_link' %>
+         <%= link_to 'Nowa publikacja', new_publication_path , class: "label label-primary pull-right" if can? :create , Publication  %>
       </div>
       <% if @publications.any? %>
         <ul class="list-group">
@@ -14,7 +14,8 @@
       <% else %>
         <div class="panel-body"> Brak publikacji </div>
       <% end %>
-      <div class="panel-footer">    
+      <div class="panel-footer">   
+        <%= will_paginate @search.hits %> 
       </div>
     </div>
   </div>
@@ -22,7 +23,7 @@
     <div class="panel panel-default">
       <div class="panel-heading"><strong>Wyszukiwanie</strong></div>
       <div class="panel-body">
-        <%= render 'search' %>
+        <%= render  'shared/search_form' %>
       </div>
       <div class="panel-footer">
 

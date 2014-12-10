@@ -21,10 +21,10 @@ class Ability
         can [:create,:edit,:destroy] , [Publication] , :user_id => user.id
         
         can [:create,:edit ] , [Author] do |author|
-            author.owner && author.owner_id == user.id
+            author.owner && author.owner.id == user.id
         end
         can :destroy , Author do |author|
-            author.owner && author.owner_id == user.id && (author.user==nil || author.user_id != user.id)
+            author.owner && author.owner.id == user.id && (author.user==nil || author.user_id != user.id)
         end
     end
 

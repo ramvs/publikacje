@@ -9,6 +9,18 @@ class Author < ActiveRecord::Base
 	has_many :publications, through: :author_positions
  	validates :name, :surname, :email, :academic_degree , presence: true
 
+ 	default_scope {order('surname ASC')}
+
+ 	searchable do
+		text :name, :surname , :email , :academic_degree
+		integer :user_id
+		integer :added_by_id
+		integer :publication_ids , multiple: true do
+			publications.map(&:id)
+		end
+		time :created_at
+	end
+
 
  	def full_name
  		return "#{academic_degree} #{surname} #{name}"

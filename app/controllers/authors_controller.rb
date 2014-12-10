@@ -2,11 +2,34 @@ class AuthorsController < ApplicationController
 	before_action :setup_author , only: [:show , :edit ,:update , :destroy]
 
 	def index
-		@authors = Author.all.order("surname ASC")
+		@search = Author.search do
+	     	fulltext params[:search] 
+	      	paginate( :page => params[:page]||1 )
+	      	with :added_by_id, current_user.id  if params[:only_me]=="1" && user_signed_in?
+	    end
+	   	@authors = @search.results
 	end
 
 	def show
 		authorize! :read , @author
+		@search = Publication.search do
+			fulltext params[:search]
+			with :author_ids , params[:id]
+			with :user_id , current_user.id if params[:only_me]=="1" && user_signed_in?
+			paginate(:page=>params[:page]||1)
+		end
+		@publications = @search.results
+		respond_to do |format|
+		    format.pdf do
+		        render :pdf => "file_name", 
+		        :template => 'publications/index.pdf.erb',
+		        :encoding  => "UTF-8"
+		    end
+		    format.html {
+		        @search_param = params[:search]
+		        @search_only_me = params[:only_me]
+		    }
+		end
 	end
 
 	def edit

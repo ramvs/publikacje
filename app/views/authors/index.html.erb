@@ -9,15 +9,19 @@
 			<ul class="list-group">
 				<%= render @authors %>
 			</ul>
+			<div class="panel-footer">
+				<%= will_paginate @search.hits %>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Wyszukiwanie
+				Opcje
+				<%= link_to "Mój profil" , current_user.author ,class:"pull-right" if user_signed_in? %>
 			</div>
 			<div class="panel-body">
-			 	Wyszukiwarka
+			 	<%= render "shared/search_form" %>
 			</div>
 			<div class="panel-footer">
 			</div>

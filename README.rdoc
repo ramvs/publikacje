@@ -4,6 +4,9 @@
 bundle exec rake sunspot:solr:start
 spring rails s
 
+//Jeżeli wyszukiwanie nie działa
+bundle exec rake sunspot:solr:reindex
+
 //= po rejestracji pierwszego użytkownika
 rails c
 a = User.first
