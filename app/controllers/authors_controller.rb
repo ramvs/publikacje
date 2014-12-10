@@ -40,6 +40,7 @@ class AuthorsController < ApplicationController
 
 	def destroy
 		authorize! :destroy , @author
+		@author.create_activity :destroy , info: @author.full_name , owner: current_user
 		if @author.destroy
 			redirect_to authors_path , notice: "Autor został usunięty"
 		else

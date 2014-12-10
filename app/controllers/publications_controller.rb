@@ -128,6 +128,7 @@ class PublicationsController < ApplicationController
   # DELETE /publications/1.json
   def destroy
     authorize! :destroy, @publication
+    @publication.create_activity :destroy , info: @publication.title, owner: current_user
     @publication.destroy
     respond_to do |format|
       format.html { redirect_to publications_url, notice: 'Publication was successfully destroyed.' }

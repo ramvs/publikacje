@@ -55,6 +55,10 @@ group :development do
 end
 
  gem "cancan"
+ gem 'public_activity'
+ gem 'will_paginate'
+ gem 'will_paginate-bootstrap'
+ 
 # Use unicorn as the app server
 # gem 'unicorn'
 

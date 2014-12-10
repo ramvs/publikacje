@@ -1,0 +1,17 @@
+
+
+<div class="panel-body">
+
+		<span class="pull-right label label-primary">
+			<%= time_ago_in_words(activity.created_at) %> ago
+		</span>
+		Użytkownik: <strong><%= link_to activity.owner.full_name , activity.owner.author %> </strong>
+		dodał nowego  publikację. 
+
+		<% if activity.trackable %>
+		typu <strong><%=activity.trackable.publication_subtype.full_name%></strong>: 	
+		<div class="well well-sm">
+			<%= activity.trackable.biblio_authors %>, <i><q><%=activity.trackable.title %></q></i>
+		</div>
+		<% end %>
+</div>

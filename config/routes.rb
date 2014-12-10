@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   
-  root 'publications#index'
+  root 'static_pages#index'
   resources :publication_types
   resources :publications
   resources :publication_subtypes

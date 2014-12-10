@@ -1,4 +1,8 @@
 class Author < ActiveRecord::Base
+
+	include PublicActivity::Model
+  	tracked except: :destroy, owner: Proc.new{ |controller, model| controller.current_user }
+
 	belongs_to :user
 	belongs_to :owner , class_name: "User" , foreign_key: :added_by_id
 	has_many :author_positions, inverse_of: :author
@@ -21,5 +25,9 @@ class Author < ActiveRecord::Base
  			ary<<[a.full_name,a.id]
  		end
  		return ary
+ 	end
+
+ 	def news_feed 
+
  	end
 end

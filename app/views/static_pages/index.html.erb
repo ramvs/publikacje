@@ -1,0 +1,9 @@
+<h1> Aktualności </h1>
+<% if @activities.any? %>
+	<%= render_activities(@activities, layout: :activity)  %>
+<% else %>
+	<div class="well well-lg">
+		 Brak wydarzeń.
+	</div>
+<% end %>
+<%= will_paginate @activities, renderer: BootstrapPagination::Rails %>

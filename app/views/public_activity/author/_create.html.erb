@@ -1,0 +1,18 @@
+<div class="panel-body">
+	<span class="pull-right label label-primary">
+		<%= time_ago_in_words(activity.created_at) %> ago
+	</span>
+	<% if activity.owner %>
+		Użytkownik: <strong><%= link_to activity.owner.full_name , activity.owner.author %> </strong>
+		dodał nowego  autora:
+		 <strong>
+			<% if activity.trackable %>
+				<%= link_to activity.trackable.full_name , activity.trackable%>.
+			<% else %>
+				<%= activity.info %>
+			<% end %>
+		</strong>
+	<% else %>
+		Użytkownik <strong><%= activity.trackable.full_name %></strong> zarejestrował się w systemie.
+	<% end %>
+</div>
