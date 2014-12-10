@@ -1,0 +1,49 @@
+<h1><%= @author.full_name %></h1>
+
+<div class="row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong> Lista publikacji </strong>
+			</div>
+			<% if @author.publications.any? %>
+				<ul class="list-group">
+					<%= render @author.publications %>
+				</ul>
+			<% else %>
+				<div class="panel-body"> Brak publikacji </div>
+			<% end %>
+			<div class="panel-footer">
+				<%= link_to "Lista autorów" , authors_path , class: "label label-primary" %>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<strong> Menu </strong>
+			</div>
+			<div class="panel-body">
+
+				<div>
+					<%= link_to "Usuń", @author, method: :delete, data: { confirm: 'Are you sure?' }, class: "label label-default" if can? :destroy , @author  %>
+					<%= link_to "Edytuj", edit_author_path(@author), class: "label label-default" if can? :edit , @author %>
+				</div>
+
+				<br>
+				<div>
+					<ul class="list-group">
+						<li class="list-group-item"><%= @author.full_name %></li>
+						<li class="list-group-item"><%= @author.email %></li>
+						<li class="list-group-item">
+							<%= "Utworzony: #{@author.created_at}" %>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="panel-footer">
+			</div>
+		</div>
+	</div>
+</div>

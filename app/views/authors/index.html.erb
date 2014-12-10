@@ -1,21 +1,26 @@
 <h1> Lista autorów </h1>
 <div class="row">	
-<div class="col-md-8">
-<table class ="table">
-	<thead>
-		<tr>
-			<th> Imię i nazwisko </th>
-			<th> Email </th>
-		</tr>
-	</thead>
-	<tbody>
-		<% @authors.each do |a| %>
-			<tr>
-				<td><%= a.surname + " " + a.name %></td>
-				<td><%= a.email + " " %></td>
-			</tr>
-		<% end %>
-	</tbody>
-</table>
-</div>
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Liczba autorów: <%= @authors.count %>
+				<%= link_to "Nowy autor" , new_author_path ,class: "label label-primary pull-right" if can? :create, Author %> 
+			</div>
+			<ul class="list-group">
+				<%= render @authors %>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Wyszukiwanie
+			</div>
+			<div class="panel-body">
+			 	Wyszukiwarka
+			</div>
+			<div class="panel-footer">
+			</div>
+		</div>
+	</div>
 </div>

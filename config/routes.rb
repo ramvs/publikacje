@@ -1,15 +1,12 @@
 Rails.application.routes.draw do
 
   
-  root 'authors#index'
+  root 'publications#index'
   resources :publication_types
   resources :publications
   resources :publication_subtypes
   resources :publication_attributes
-  get 'publications/index'
-  get 'authors/index'
-
-  post "publications/new"
+  resources :authors
 
 
   get 'admin/users/index' , to: 'admins#users' , as: :users_administrator
