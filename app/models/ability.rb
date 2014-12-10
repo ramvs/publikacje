@@ -12,7 +12,11 @@ class Ability
         can [:create , :edit , :destroy ] , [PublicationAttribute]
         can [:create , :edit , :destroy ] , [PublicationType]
         can [:create , :edit , :destroy ] , [PublicationSubtype]
-        can [:create , :edit , :destroy ] , [Author]
+        
+        can [:create , :edit ] , [Author]
+        can :destroy , Author do |author|
+            author.user == nil
+        end
     elsif user.approved
         can [:create,:edit,:destroy] , [Publication] , :user_id => user.id
         
