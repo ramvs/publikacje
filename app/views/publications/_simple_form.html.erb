@@ -9,6 +9,7 @@
 
 		<%= f.fields_for :authors do |a| %>
 			<%= a.select(:id,options_for_select(@authors,@selected),{label: "Autorzy"},{multiple: true , id: "author_select"}) %>
+		<%= f.file_field :zalacznik , label: "Wersja elektroniczna: " %>
 		<% end %>
 	</div>
 </div>

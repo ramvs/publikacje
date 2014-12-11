@@ -10,9 +10,19 @@ class Publication < ActiveRecord::Base
 	belongs_to :publication_subtype
 	belongs_to :user
 	validates :title, :description, :user, :publication_subtype, presence: true
+	has_attached_file :zalacznik , :url  => "/assets/publications/:id/:style/:basename.:extension",
+                    :path => ":rails_root/public/assets/publications/:id/:style/:basename.:extension"
+    validates_attachment_content_type :zalacznik, :with => %r{\.(docx|doc|pdf)$}i ,
+      :content_type => [ "application/pdf","application/vnd.ms-excel",     
+             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+             "application/msword", 
+             "application/vnd.openxmlformats-officedocument.wordprocessingml.document", 
+             "text/plain" ]
 
 	accepts_nested_attributes_for :author_positions
 	accepts_nested_attributes_for :attribute_values
+
+	
 
 	searchable do
 		text :title

@@ -14,3 +14,6 @@ a.admin=true
 a.approved=true
 a.save
 exit
+
+
+!!! ImageMagic wymagany dla działania paperclipa
