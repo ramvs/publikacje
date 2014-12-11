@@ -11,6 +11,16 @@ $(document).on "submit" , "#main_form" , (ev) ->
 $(document).ready () ->
 	send_params_request()
 
+$(document).ready () ->
+	$("#author_select").chosen 
+		width:"100%",
+		placeholder_text_multiple: "Wybierz autorów"
+	
+	
+	$("#type_select").chosen
+		width:"100%"
+	
+
 send_params_request = () ->
 	if $("#type_select").length==0
 		return

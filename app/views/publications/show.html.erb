@@ -19,6 +19,12 @@
 			<li class="list-group-item"><strong>Dodane przez: </strong><%= "#{@publication.user.full_name} , #{@publication.user.email}" %></li>
 			<li class="list-group-item"><strong>Data dodania: </strong><%= @publication.created_at %></li>
 			<li class="list-group-item"><strong>Data aktualizacji: </strong><%= @publication.updated_at %></li>
+			<% if @publication.zalacznik %>
+			<li class="list-group-item">
+				<strong>Wersja elektroniczna:</strong>
+				<%= link_to "plik", @publication.zalacznik.url %>
+			</li>
+			<% end %>
 			<li class="list-group-item">
 				<strong> Lista autorów: </strong>
 				<ul class="list-group">

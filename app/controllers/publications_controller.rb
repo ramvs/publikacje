@@ -124,6 +124,11 @@ class PublicationsController < ApplicationController
         format.html { redirect_to @publication, notice: 'Publication was successfully updated.' }
         format.json { render :show, status: :ok, location: @publication }
       else
+         @authors = Author.prepare_seletc_array
+        @types = PublicationType.prepare_type_list
+        flash[:danger] = @publication.errors.full_messages
+        @type = params[:publication][:publication_subtype_id]
+        @selected = params[:publication][:authors][:id]
         format.html { render :edit }
         format.json { render json: @publication.errors, status: :unprocessable_entity }
       end
@@ -150,7 +155,7 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-        params.require(:publication).permit(:title, :description, :publication_subtype_id)
+        params.require(:publication).permit(:title, :description, :publication_subtype_id,:zalacznik)
     end
 end
 #
