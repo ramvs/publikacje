@@ -208,9 +208,8 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-
+  jquery-ui-rails
   paperclip (~> 4.2)
-
   pg
   pry-rails
   public_activity

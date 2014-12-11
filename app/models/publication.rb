@@ -22,8 +22,6 @@ class Publication < ActiveRecord::Base
 	accepts_nested_attributes_for :author_positions
 	accepts_nested_attributes_for :attribute_values
 
-	
-
 	searchable do
 		text :title
 		text :description
@@ -80,7 +78,7 @@ class Publication < ActiveRecord::Base
 
 	private 
 		def remove_reminder
-			self.user.update_attributes(reminder: false)
+			self.user.update_attributes(date_reminder: nil , reminder: false)
 		end
 	
 end

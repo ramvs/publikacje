@@ -1,2 +1,2 @@
-$(document).ready() ->
-		$('#admin_Data').datepicker()
+$(document).ready () ->
+	$("#user_date_reminder").datepicker()
