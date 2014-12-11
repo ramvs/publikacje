@@ -1,5 +1,5 @@
 class PublicationSubtype < ActiveRecord::Base
-	has_many :publications
+	has_many :publications , inverse_of: :publication_subtype, :dependent => :destroy
 	belongs_to :publication_type
 
 	validates_presence_of :publication_type

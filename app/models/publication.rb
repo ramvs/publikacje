@@ -1,9 +1,11 @@
 class Publication < ActiveRecord::Base
 	include PublicActivity::Model
-  	tracked except: :destroy, owner: Proc.new{ |controller, model| controller.current_user }
 
+	after_create :remove_reminder
+
+  	tracked except: :destroy, owner: Proc.new{ |controller, model| controller.current_user }
 	has_many :attribute_values , inverse_of: :publication , :dependent => :destroy
-	has_many :author_positions , inverse_of: :publication
+	has_many :author_positions , inverse_of: :publication , :dependent => :destroy
 	has_many :authors , through: :author_positions
 	belongs_to :publication_subtype
 	belongs_to :user
@@ -66,5 +68,9 @@ class Publication < ActiveRecord::Base
     	end
 	end
 
+	private 
+		def remove_reminder
+			self.user.update_attributes(reminder: false)
+		end
 	
 end

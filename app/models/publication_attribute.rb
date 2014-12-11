@@ -1,7 +1,7 @@
 class PublicationAttribute < ActiveRecord::Base
 	self.inheritance_column = nil
-	has_many :attribute_values , inverse_of: :publication_attribute
-	has_many :attribute_positions
+	has_many :attribute_values , inverse_of: :publication_attribute, :dependent => :destroy
+	has_many :attribute_positions, inverse_of: :publication_attribute, :dependent => :destroy
 	has_many :pubications ,  inverse_of: :publication_attribute
 	validates :name, :type, presence: true
 

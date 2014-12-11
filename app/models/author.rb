@@ -5,7 +5,7 @@ class Author < ActiveRecord::Base
 
 	belongs_to :user
 	belongs_to :owner , class_name: "User" , foreign_key: :added_by_id
-	has_many :author_positions, inverse_of: :author
+	has_many :author_positions, inverse_of: :author, :dependent => :destroy
 	has_many :publications, through: :author_positions
  	validates :name, :surname, :email, :academic_degree , presence: true
 

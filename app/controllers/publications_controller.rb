@@ -93,7 +93,7 @@ class PublicationsController < ApplicationController
   def create
     @publication = Publication.new(publication_params)
     authorize! :create , Publication
-    @publication.user_id = current_user.id
+    @publication.user = current_user
     @publication.authors = Author.where(id: params[:publication][:authors][:id])
     @publication.set_values params[:attribute]
     respond_to do |format|
