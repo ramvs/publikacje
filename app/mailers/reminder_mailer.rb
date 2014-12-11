@@ -3,7 +3,7 @@ class ReminderMailer < ActionMailer::Base
 
   def reminder_mail(user)
     @user = user
-    if @user.reminder.present?
+    if (@user.reminder.present? and (@user.date_reminder <= Date.today))
         mail(to: @user.email, subject: 'KIA - Przypomnienie')
     end
   end

@@ -12,6 +12,7 @@
 	<%= u.check_box  :admin , label: "Administrator" %>
 	<%= u.check_box  :approved , label: "Konto aktywne" %>
 	<%= u.check_box  :reminder, label: "Przypomnienie" %>
+	<%= u.text_field :date_reminder ,label: "Data przypomnienia" %>
 	<%= u.submit "Zapisz zmiany" , class: "btn btn-primary" %>
 <% end %>
 </div>
