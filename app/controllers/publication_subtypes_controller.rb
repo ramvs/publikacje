@@ -3,7 +3,8 @@ class PublicationSubtypesController < ApplicationController
   # GET /publication_subtypes
   # GET /publication_subtypes.json
   def index
-    @publication_subtypes = PublicationSubtype.all
+    @publication_subtypes=PublicationSubtype.joins(:publication_type)
+                                .order("publication_types.name ASC").order("name ASC")
   end
 
   # GET /publication_subtypes/1

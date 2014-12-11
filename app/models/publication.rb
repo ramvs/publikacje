@@ -46,7 +46,7 @@ class Publication < ActiveRecord::Base
 	def biblio_authors
 		string = ""
 		authors.each do |a|
-			string+=a.biblio_name+" "
+			string+=a.biblio_name+", "
 		end
 		return string
 	end
