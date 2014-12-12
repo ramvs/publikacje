@@ -25,10 +25,7 @@ class AuthorsController < ApplicationController
 		        :template => 'publications/index.pdf.erb',
 		        :encoding  => "UTF-8"
 		    end
-		    format.html {
-		        @search_param = params[:search]
-		        @search_only_me = params[:only_me]
-		    }
+		    format.html
 		end
 	end
 

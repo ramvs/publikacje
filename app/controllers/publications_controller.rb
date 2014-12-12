@@ -23,10 +23,7 @@ class PublicationsController < ApplicationController
         :template => 'publications/index.pdf.erb',
         :encoding  => "UTF-8"
       end
-      format.html {
-        @search_param = params[:search]
-        @search_only_me = params[:only_me]
-      }
+      format.html
     end
   end
 
@@ -155,7 +152,7 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-        params.require(:publication).permit(:title, :description, :publication_subtype_id,:zalacznik)
+      params.require(:publication).permit(:title, :description, :publication_subtype_id,:zalacznik,:publish_at)
     end
 end
 #

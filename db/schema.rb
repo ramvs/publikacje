@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211005256) do
+ActiveRecord::Schema.define(version: 20141212220315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20141211005256) do
     t.string   "zalacznik_content_type"
     t.integer  "zalacznik_file_size"
     t.datetime "zalacznik_updated_at"
+    t.date     "publish_at"
   end
 
   add_index "publications", ["publication_subtype_id"], name: "index_publications_on_publication_subtype_id", using: :btree

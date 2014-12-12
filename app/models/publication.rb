@@ -9,7 +9,7 @@ class Publication < ActiveRecord::Base
 	has_many :authors , through: :author_positions
 	belongs_to :publication_subtype
 	belongs_to :user
-	validates :title, :description, :user, :publication_subtype, presence: true
+	validates :title, :description, :user, :publication_subtype,:publish_at, presence: true
 	has_attached_file :zalacznik , :url  => "/assets/publications/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/publications/:id/:style/:basename.:extension"
     validates_attachment_content_type :zalacznik, :with => %r{\.(docx|doc|pdf)$}i ,
@@ -21,6 +21,8 @@ class Publication < ActiveRecord::Base
 
 	accepts_nested_attributes_for :author_positions
 	accepts_nested_attributes_for :attribute_values
+
+	default_scope {order('created_at DESC')}
 
 	searchable do
 		text :title
