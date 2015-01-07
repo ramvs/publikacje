@@ -14,7 +14,7 @@
  *= require_self
  *= require jquery-ui/datepicker
  *= require rails_bootstrap_forms
- *= require chosen.min.css
+ *= require chosen
  *= require font-awesome
  */
 @import "font-awesome";

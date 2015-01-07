@@ -16,5 +16,5 @@
 //= require jquery-ui/datepicker
 //= require twitter/bootstrap
 //= require turbolinks
-//= require chosen.jquery.js
+//= require chosen-jquery
 //= require_tree .
