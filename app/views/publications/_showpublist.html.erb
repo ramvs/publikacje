@@ -1,4 +1,5 @@
  
+<div >
 <% prev = nil %>
 <% @publications.each do |p| %>
 	<% new_one = (prev!=p.publication_subtype_id) %>
@@ -8,7 +9,7 @@
 	   <ol> 
 	<% end %>
    		 <li> <%=p.biblio_authors%> <q> <i><%=p.title%> </i> </q>,
-   		  <%=p.publish_at %>
+   		  <%=p.publish_at %>.
    		 </li>
   
     <% prev = p.publication_subtype_id %>
@@ -18,3 +19,4 @@
 <% else %>
 	Brak publikacji.
 <% end %>
+</div>
