@@ -9,6 +9,7 @@
   <span>
     <%= publication.biblio_authors %>,
     <i> <%= link_to publication.title , publication %>, </i>
-    <%=publication.publication_subtype.full_name%>
+    <%= publication.publish_at %>, 
+    <%=publication.publication_subtype.full_name%>.
   </span>     
 </li>

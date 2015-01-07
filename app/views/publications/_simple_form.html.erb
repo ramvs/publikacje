@@ -3,12 +3,16 @@
 		Dane podstawowe
 	</div>
 	<div class="panel-body">
-		<%= f.text_field :title , required: true %>
-		<%= f.text_field :description , required: true %>
-		<%= f.select(:publication_subtype_id,options_for_select(@types,@type),{ required: true },{ id: "type_select"}) %>
+		<%= f.text_field :title , required: true , label: "Tytuł publikacji" %>
+		<%= f.text_field :description , required: true , label: "Opis" %>
+		<%= f.select(:publication_subtype_id,options_for_select(@types,@type),{ required: true, label: "Typ"},{ id: "type_select"} ) %>
 
 		<%= f.fields_for :authors do |a| %>
 			<%= a.select(:id,options_for_select(@authors,@selected),{label: "Autorzy"},{multiple: true , id: "author_select"}) %>
+		<div class="form-group">
+			<%= f.label :publish_at ,"Rok wydania" %>
+			<%= select_year Date.today, {:start_year => Time.now.year, :end_year => Time.now.year - 95, :field_name => 'publish_at'} , {:class=>"form-control",:name=>"publication[publish_at]"}  %>
+		</div>
 		<%= f.file_field :zalacznik , label: "Wersja elektroniczna: " %>
 		<% end %>
 	</div>

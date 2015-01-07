@@ -9,7 +9,7 @@ class Publication < ActiveRecord::Base
 	has_many :authors , through: :author_positions
 	belongs_to :publication_subtype
 	belongs_to :user
-	validates :title, :description, :user, :publication_subtype, presence: true
+	validates :title, :description, :user, :publication_subtype,:publish_at, presence: true
 	has_attached_file :zalacznik , :url  => "/assets/publications/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/assets/publications/:id/:style/:basename.:extension"
     validates_attachment_content_type :zalacznik, :with => %r{\.(docx|doc|pdf)$}i ,
@@ -22,10 +22,14 @@ class Publication < ActiveRecord::Base
 	accepts_nested_attributes_for :author_positions
 	accepts_nested_attributes_for :attribute_values
 
+	default_scope {order('created_at DESC')}
+
 	searchable do
 		text :title
 		text :description
+		integer :publication_subtype_id
 		integer :user_id 
+		integer :publish_at
 		integer :author_ids, multiple: true do
 			authors.map {|author| author.id }
 		end
@@ -74,6 +78,23 @@ class Publication < ActiveRecord::Base
     	else
       		return []
     	end
+	end
+
+	def self.do_search search, publish_date, user_only, author_id, format, page
+		count = Publication.count if format
+		@search = Publication.search do
+	      fulltext search do
+	        phrase_fields title: 3.0
+	        fields(:authors,:title,:type)
+	      end
+	      order_by :publication_subtype_id, :asc if format
+	      order_by :publish_at, :desc
+	      with :user_id, user_only  if user_only
+	      with :publish_at, publish_date.to_i if publish_date && publish_date!=""
+	      with :author_ids, author_id if author_id
+	      paginate( page.to_i ) if page && page!="" if !format
+	      paginate( page: 1, per_page: count ) if format
+	    end
 	end
 
 	private 

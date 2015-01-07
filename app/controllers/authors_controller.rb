@@ -1,6 +1,6 @@
 class AuthorsController < ApplicationController
+	include ApplicationHelper
 	before_action :setup_author , only: [:show , :edit ,:update , :destroy]
-
 	def index
 		@search = Author.search do
 	     	fulltext params[:search] 
@@ -12,12 +12,11 @@ class AuthorsController < ApplicationController
 
 	def show
 		authorize! :read , @author
-		@search = Publication.search do
-			fulltext params[:search]
-			with :author_ids , params[:id]
-			with :user_id , current_user.id if params[:only_me]=="1" && user_signed_in?
-			paginate(:page=>params[:page]||1)
-		end
+		@search = Publication.do_search(
+			params[:search],params[:publish_at],
+			only_current_user(params[:only_me]),@author.id,
+			params[:format]=="pdf",params[:page]
+		)
 		@publications = @search.results
 		respond_to do |format|
 		    format.pdf do
@@ -25,10 +24,7 @@ class AuthorsController < ApplicationController
 		        :template => 'publications/index.pdf.erb',
 		        :encoding  => "UTF-8"
 		    end
-		    format.html {
-		        @search_param = params[:search]
-		        @search_only_me = params[:only_me]
-		    }
+		    format.html
 		end
 	end
 

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   root 'static_pages#index'
   resources :publication_types
-  resources :publications
+  resources :publications , except: :destroy
   resources :publication_subtypes
   resources :publication_attributes
   resources :authors

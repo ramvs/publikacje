@@ -11,4 +11,12 @@ module ApplicationHelper
 			"Nie"
 		end
 	end
+
+	def only_current_user check
+		if check && check=="1" && user_signed_in?
+			return current_user.id
+		else
+			return nil
+		end
+	end
 end

@@ -1,6 +1,7 @@
 <%= bootstrap_form_tag :method => :get do |f| %>
   <p>
     <%= f.text_field :search , label: "Treść" %>
+    <%= f.text_field :publish_at, label: "Rok wydania" %>
     <%= f.check_box :only_me , label: "Tylko dodane przeze mnie" if user_signed_in? %>
     <%= f.submit "Wyszukaj", :name => nil %>
   </p>

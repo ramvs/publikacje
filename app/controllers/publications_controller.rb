@@ -1,4 +1,5 @@
 class PublicationsController < ApplicationController
+  include ApplicationHelper
   before_action :set_publication, only: [:show, :edit, :update, :destroy]
   #
   respond_to :docx
@@ -7,26 +8,19 @@ class PublicationsController < ApplicationController
   # GET /publications.json
   def index
     authorize! :read , Publication
-    @search = Publication.search do
-      fulltext params[:search] do
-        phrase_fields title: 3.0
-        fields(:authors,:title,:type)
-      end
-      order_by :created_at, :desc 
-      with :user_id , current_user.id if params[:only_me]=="1" && user_signed_in?
-      paginate( :page => params[:page]||1 )
-    end
+    @search = Publication.do_search(
+        params[:search], params[:publish_at],
+        only_current_user(params[:only_me]), nil, params[:format]=="pdf",params[:page]
+      )
+    
     @publications = @search.results
-     respond_to do |format|
-     format.pdf do
+    respond_to do |format|
+      format.pdf do
         render :pdf => "file_name", 
         :template => 'publications/index.pdf.erb',
         :encoding  => "UTF-8"
       end
-      format.html {
-        @search_param = params[:search]
-        @search_only_me = params[:only_me]
-      }
+      format.html 
     end
   end
 
@@ -155,7 +149,7 @@ class PublicationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def publication_params
-        params.require(:publication).permit(:title, :description, :publication_subtype_id,:zalacznik)
+      params.require(:publication).permit(:title, :description, :publication_subtype_id,:zalacznik,:publish_at)
     end
 end
 #

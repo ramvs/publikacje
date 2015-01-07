@@ -10,9 +10,7 @@
 			<ul class="list-group">
 			<li class="list-group-item"><strong>Typ: </strong><%= @publication.publication_subtype.full_name %></li>
 			<li class="list-group-item"><strong>Opis: </strong><%= @publication.description %></li>
-			<li class="list-group-item"><strong>Dodane przez: </strong><%= "#{@publication.user.full_name} , #{@publication.user.email}" %></li>
-			<li class="list-group-item"><strong>Data dodania: </strong><%= @publication.created_at %></li>
-			<li class="list-group-item"><strong>Data aktualizacji: </strong><%= @publication.updated_at %></li>
+			<li class="list-group-item"><strong>Rok wydania: </strong><%= @publication.publish_at %></li>
 			<li class="list-group-item">
 				<strong> Lista autorów: </strong>
 				<ul class="list-group">
@@ -24,6 +22,9 @@
 					<% end %>
 				</ul>
 			</li>
+			<li class="list-group-item"><strong>Dodane przez: </strong><%= "#{@publication.user.full_name} , #{@publication.user.email}" %></li>
+			<li class="list-group-item"><strong>Data dodania: </strong><%= @publication.created_at %></li>
+			<li class="list-group-item"><strong>Data aktualizacji: </strong><%= @publication.updated_at %></li>
 			</ul>
 
 					
