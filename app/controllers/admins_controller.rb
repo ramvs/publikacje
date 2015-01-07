@@ -38,6 +38,6 @@ class AdminsController < ApplicationController
 
 	private
 		def user_params
-			params.require(:user).permit(:admin,:approved,:reminder,:date_reminder)
+			params.require(:user).permit(:admin,:approved,:reminder,:date_reminder,:date_reminder_last)
 		end
 end
