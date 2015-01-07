@@ -17,9 +17,9 @@ class PublicationSubtype < ActiveRecord::Base
 		publication_type.publication_attributes
 	end
 
-	def full_name
+	def full_name brk="-"
 		if name && name.length > 0
-			return "#{publication_type_name} - #{name}"
+			return "#{publication_type_name} #{brk} #{name}"
 		else
 			return publication_type_name
 		end

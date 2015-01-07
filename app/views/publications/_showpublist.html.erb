@@ -1,8 +1,20 @@
- <ol>
+ 
+<% prev = nil %>
 <% @publications.each do |p| %>
-   		 <li> <%=p.biblio_authors%>, <q> <i><%=p.title%> </i> </q>,
-   		  <%=p.created_at.year%>, <%=p.publication_subtype.full_name%> 
+	<% new_one = (prev!=p.publication_subtype_id) %>
+	<% if prev!=nil && new_one %> </ol> <% end %>
+	<% if new_one %>
+	   <h4><%= p.publication_subtype.full_name("") %></h4>
+	   <ol> 
+	<% end %>
+   		 <li> <%=p.biblio_authors%> <q> <i><%=p.title%> </i> </q>,
+   		  <%=p.publish_at %>
    		 </li>
-    
+  
+    <% prev = p.publication_subtype_id %>
 <% end %>
-</ol>
+<% if @publications.any? %>
+	</ol>
+<% else %>
+	Brak publikacji.
+<% end %>

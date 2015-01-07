@@ -27,7 +27,9 @@ class Publication < ActiveRecord::Base
 	searchable do
 		text :title
 		text :description
+		integer :publication_subtype_id
 		integer :user_id 
+		integer :publish_at
 		integer :author_ids, multiple: true do
 			authors.map {|author| author.id }
 		end
@@ -76,6 +78,23 @@ class Publication < ActiveRecord::Base
     	else
       		return []
     	end
+	end
+
+	def self.do_search search, publish_date, user_only, author_id, format, page
+		count = Publication.count if format
+		@search = Publication.search do
+	      fulltext search do
+	        phrase_fields title: 3.0
+	        fields(:authors,:title,:type)
+	      end
+	      order_by :publication_subtype_id, :asc if format
+	      order_by :publish_at, :desc
+	      with :user_id, user_only  if user_only
+	      with :publish_at, publish_date.to_i if publish_date && publish_date!=""
+	      with :author_ids, author_id if author_id
+	      paginate( page.to_i ) if page && page!="" if !format
+	      paginate( page: 1, per_page: count ) if format
+	    end
 	end
 
 	private 
