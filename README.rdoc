@@ -1,5 +1,12 @@
 == README
 
+Aplikacja służąca do zarządzania publikacjami nauczeli akademickich, wykonana w ramach przedmiotu
+"Projekt" na Politechnice Rzeszowskiej.
+
+Autorzy:
+Krystian Kawa
+Grzegorz Kapica
+
 //= start serwera
 bundle exec rake sunspot:solr:start
 spring rails s
